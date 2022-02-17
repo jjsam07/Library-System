@@ -8,12 +8,16 @@ all: main
 
 main: main.cob $(SUBPROGRAMS_OBJ)
 	cobc -x main.cob $(SUBPROGRAMS_OBJ_PATH) -o librarysystem
+	@echo All done.
 
 $(SUBPROGRAMS_OBJ): %.o: %.cob
 	cobc $(COBC_OPTION) $< -o $(OBJ_DIR)/$@
 
 clean: 
-	rm cobol_obj/* librarysystem
+	rm $(OBJ_DIR)/* librarysystem
+	
+clean-windows: 
+	del /q $(OBJ_DIR)\* librarysystem.exe
 
 files: 
 	@echo "SUBPROGRAMS_SRC: $(SUBPROGRAMS_SRC)"
