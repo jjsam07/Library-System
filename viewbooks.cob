@@ -3,10 +3,12 @@
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-            SELECT BOOKRECORD ASSIGN TO "library.txt"
-            ORGANIZATION IS INDEXED
-            ACCESS MODE IS SEQUENTIAL
-            RECORD KEY IS BOOKNAME.
+           SELECT BOOKRECORD ASSIGN TO "library.txt"
+           ORGANIZATION IS INDEXED
+           ACCESS MODE IS SEQUENTIAL
+           RECORD KEY IS BOOK-ID
+           ALTERNATE RECORD KEY IS BOOKNAME
+           FILE STATUS IS FILE-STATUS-WS.
             
        DATA DIVISION.
        FILE SECTION.
@@ -35,14 +37,24 @@
                10 YYYY-WS PIC 9(4).
        
        01 EOF-WS PIC A VALUE "N".
+       01 FILE-STATUS-WS PIC X(2).
+           88 FILE-DOES-NOT-EXIST-WS VALUE 35.
+       
        PROCEDURE DIVISION.
-           CALL "HeadMessage" USING "VIEW BOOKS DETAILS".
            OPEN INPUT BOOKRECORD
+               IF FILE-DOES-NOT-EXIST-WS
+                   DISPLAY "Library record does not exist"
+                   EXIT PROGRAM
+               END-IF
+               
+               CALL "HeadMessage" USING "VIEW BOOK DETAILS".
+               
                PERFORM UNTIL EOF-WS = "Y"
                    READ BOOKRECORD INTO BOOK-WS
                    AT END MOVE "Y" TO EOF-WS
                    NOT AT END PERFORM ShowBookDetails
                END-PERFORM
+               
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
         
