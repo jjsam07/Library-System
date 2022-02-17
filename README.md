@@ -13,7 +13,7 @@ Open make.bat in notepad (Right-click -> Edit).
 
 ![step 1](https://github.com/jjsam07/Library-System/blob/main/images/step1.png)
 ### Step 2
-Paste your the corresponding paths from OpenCOBOLIDE settings to make.bat.
+Paste your corresponding paths from OpenCOBOLIDE settings to make.bat.
 ![step 2](https://github.com/jjsam07/Library-System/blob/main/images/step2.png)
 
 Save make.bat and double-click make.bat to run it (you can do it also in cmd).
