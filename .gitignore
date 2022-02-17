@@ -1,6 +1,7 @@
+bin/
 c/
 cobol_obj/
-librarysystem
+librarysystem*
 library.txt
 *.txt.*
 *.so
