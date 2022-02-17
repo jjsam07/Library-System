@@ -1,6 +1,6 @@
 /bin/
-
-librarysystem*
+librarysystem
+librarysystem.exe
 /*.txt
 /*.bat
 /*.txt.*
