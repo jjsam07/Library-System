@@ -2,6 +2,6 @@ bin/
 cobol_obj/
 librarysystem*
 library.txt
-*.bat
-*.txt.*
-*.so
+/*.bat
+/*.txt.*
+/*.so
