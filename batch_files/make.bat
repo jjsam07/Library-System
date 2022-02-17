@@ -1,5 +1,5 @@
 @echo off
-set COB_MAIN_DIR=D:-YOUR_PATH-
+set COB_MAIN_DIR=-YOUR_PATH-
 
 :: settings for cobc
 set COB_CONFIG_DIR=%COB_MAIN_DIR%config
