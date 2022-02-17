@@ -3,5 +3,7 @@ c/
 cobol_obj/
 librarysystem*
 library.txt
+make.bat
+clean.bat
 *.txt.*
 *.so
