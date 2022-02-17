@@ -1,7 +1,6 @@
-set PATH=%PATH%;YOUR_PATH
-set COB_CONFIG_DIR=YOUR_PATH
-set COB_COPY_DIR=YOUR_PATH
-set COB_INCLUDE_PATH=YOUR_PATH
-set COB_LIB_PATH=YOUR_PATH
+@echo off
+set COB_MAIN_DIR=D:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\
+
+set PATH=%COB_MAIN_DIR%bin;%PATH%
 
 mingw32-make clean-windows
