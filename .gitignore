@@ -1,7 +1,6 @@
 bin/
-cobol_obj/
 librarysystem*
-library.txt
+/*.txt
 /*.bat
 /*.txt.*
 /*.so
