@@ -50,6 +50,7 @@
       *    END-IF.
            
            CALL "HeadMessage" USING "ADD NEW BOOKS".
+           DISPLAY "Hello classmates".
            
            DISPLAY "               ADD BOOKS".
            DISPLAY "BOOK-ID:".
