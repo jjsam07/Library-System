@@ -9,7 +9,7 @@
            RECORD KEY IS BOOK-ID
            ALTERNATE RECORD KEY IS BOOKNAME
            FILE STATUS IS FILE-STATUS-WS.
-            
+
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
@@ -23,7 +23,7 @@
                10 MM PIC 9(2).
                10 DD PIC 9(2).
                10 YYYY PIC 9(4).
-       
+
        WORKING-STORAGE SECTION.
        01 BOOK-WS.
            05 BOOK-ID-WS PIC 9(10).
@@ -35,11 +35,11 @@
                10 MM-WS PIC 9(2).
                10 DD-WS PIC 9(2).
                10 YYYY-WS PIC 9(4).
-       
+
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
-       
+
        PROCEDURE DIVISION.
       *    OPEN EXTEND BOOKRECORD.
       *    IF FILE-DOES-NOT-EXIST-WS
@@ -48,11 +48,11 @@
       *    ELSE
       *        CLOSE BOOKRECORD
       *    END-IF.
-           
+
            CALL "HeadMessage" USING "ADD NEW BOOKS".
-           
+
            DISPLAY "               ADD BOOKS".
-           DISPLAY "BOOK-ID:".
+           DISPLAY "BOOK-ID:" WITH NO ADVANCING
            ACCEPT BOOK-ID.
 
            IF BOOK-ID = 0 THEN
@@ -60,19 +60,20 @@
                STOP RUN
            ELSE
                OPEN EXTEND BOOKRECORD
-                   DISPLAY "Book Name:"
+                   DISPLAY "Book Name:" WITH NO ADVANCING
                    ACCEPT BOOKNAME
 
-                   DISPLAY "Author's Name:"
+                   DISPLAY "Author's Name:" WITH NO ADVANCING
                    ACCEPT AUTHORNAME
 
-                   DISPLAY "Book Issue Date (MM/DD/YYYY):"
+                   DISPLAY "Book Issue Date (MM/DD/YYYY):" WITH NO
+                   ADVANCING
                    ACCEPT ISSUE-DATE
 
                    WRITE BOOK
                CLOSE BOOKRECORD
            END-IF.
-           
+
            OPEN INPUT BOOKRECORD.
                PERFORM UNTIL EOF-WS = 'Y'
                    READ BOOKRECORD INTO BOOK-WS
@@ -82,4 +83,3 @@
                END-PERFORM.
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
-
