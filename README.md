@@ -4,7 +4,7 @@ isdatevalid, isleapyear, isnamevalid
 # How to compile in Windows with OpenCOBOLIDE
 Because OpenCOBOLIDE comes packaged with mingw,
 we can use ming32-make to automate our build process
-(just like in linux).
+(just like in linux (GNU/Linux)).
 
 ## Compilation
 ### Step 1
