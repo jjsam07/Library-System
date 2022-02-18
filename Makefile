@@ -20,10 +20,10 @@ $(SUBPROGRAMS_OBJ): %.o: $(SRC_DIR)/%.cob
 	cobc $(COBC_OPTION) $< -o $(OBJ_DIR)/$@
 
 clean: 
-	rm $(OBJ_DIR)/* $(PROGNAME)
+	rm $(OBJ_DIR)/*.o $(PROGNAME)
 	
 clean-windows: 
-	del /q $(OBJ_DIR)\* $(PROGNAME).exe
+	del /q $(OBJ_DIR)\*.o $(PROGNAME).exe
 
 files: 
 	@echo "SUBPROGRAMS_SRC: $(SUBPROGRAMS_SRC)"
