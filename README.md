@@ -8,7 +8,7 @@ we can use ming32-make to automate our build process
 
 ## Compilation
 ### Step 1
-Open OpenCOBOLIDE. Goto Preferences -> "Compiler" Tab.  
+Open OpenCOBOLIDE. Go to Preferences -> "Compiler" Tab.  
 Copy batch_files/make.bat to project root directory.  
 Open make.bat in notepad (Right-click -> Edit).
 
@@ -17,10 +17,10 @@ Open make.bat in notepad (Right-click -> Edit).
 Paste your corresponding path from OpenCOBOLIDE settings to make.bat.
 ![step 2](https://github.com/jjsam07/Library-System/blob/main/images/step2.png)
 
-Save make.bat and double-click make.bat to run it (you can do it also in cmd).
+Save make.bat and double-click make.bat to run it (you can run it also in cmd).
 
 ## Clean-up
 
 To clean up the project directory for a fresh build, do the same as step 1 and 2  
-in Compilation. But instead of opening make.bat, open clean.bat  
-Save clean.bat and double-click clean.bat to run it (you can do it also in cmd).
+in Compilation. But instead of doing it with make.bat, do it with clean.bat.  
+Save clean.bat and double-click clean.bat to run it (you can run it also in cmd).
