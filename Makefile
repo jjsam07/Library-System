@@ -29,7 +29,3 @@ files:
 	@echo "SUBPROGRAMS_SRC: $(SUBPROGRAMS_SRC)"
 	@echo "SUBPROGRAMS_OBJ: $(SUBPROGRAMS_OBJ)"
 	@echo "SUBPROGRAMS_OBJ_PATH: $(SUBPROGRAMS_OBJ_PATH)"
-
-#PUll request test
-#PUll request test
-#PUll request test
