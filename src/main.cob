@@ -5,5 +5,7 @@
        DATA DIVISION.
        PROCEDURE DIVISION.
            CALL "WelcomeMessage".
-           CALL "Menu".
+           PERFORM UNTIL 1 < 0
+               CALL "Menu"
+           END-PERFORM
            STOP RUN.

@@ -35,7 +35,7 @@
       *                EXIT PERFORM
                    WHEN 0
                        DISPLAY "Thank you come again next time"
-                       EXIT PERFORM
+                       STOP RUN
                    WHEN OTHER
                        DISPLAY "INVALID INPUT!!! Try again..."
                END-EVALUATE

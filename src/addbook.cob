@@ -81,5 +81,5 @@
                    END-READ
                END-PERFORM.
            CLOSE BOOKRECORD.
-           STOP RUN.
+           EXIT PROGRAM.
 

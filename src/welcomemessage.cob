@@ -9,24 +9,24 @@
       *    //headMessage("COBOL GROUP 1");
            MOVE "COBOL GROUP 1" TO HEAD-MESSAGE.
            CALL "HeadMessage" USING HEAD-MESSAGE.
-           DISPLAY "  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-"
-      -    "**-**-**".
-           DISPLAY "        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-      -    "=-=".
-           DISPLAY "        =                 WELCOME                 "
-      -    "  =".
-           DISPLAY "        =                   TO                    "
-      -    "  =".
-           DISPLAY "        =                 LIBRARY                 "
-      -    "  =".
-           DISPLAY "        =               MANAGEMENT                "
-      -    "  =".
-           DISPLAY "        =                 SYSTEM                  "
-      -    "  =".
-           DISPLAY "        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-"
-      -    "=-=".
-           DISPLAY "  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-"
-      -    "**-**-**".
+           DISPLAY "  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-*
+      -    "*-**-**".
+           DISPLAY "        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      -    "-=".
+           DISPLAY "        =                 WELCOME                  
+      -    " =".
+           DISPLAY "        =                   TO                     
+      -    " =".
+           DISPLAY "        =                 LIBRARY                  
+      -    " =".
+           DISPLAY "        =               MANAGEMENT                 
+      -    " =".
+           DISPLAY "        =                 SYSTEM                   
+      -    " =".
+           DISPLAY "        =-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=
+      -    "-=".
+           DISPLAY "  **-**-**-**-**-**-**-**-**-**-**-**-**-**-**-**-*
+      -    "*-**-**".
            DISPLAY " Enter any key to continue.....".
       *    //getch();
            EXIT PROGRAM.
