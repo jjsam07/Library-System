@@ -10,16 +10,6 @@ isdatevalid, isleapyear, isnamevalid
 2. Updating information  
   - Updating book information  
   - User information  
-
-#  
-1. User authentication  
-  - Guest  
-  - User  
-  - Admin User  
-  
-2. Updating information  
-  - Updating book information  
-  - User information  
   
 # How to compile in Windows with OpenCOBOLIDE
 Because OpenCOBOLIDE comes packaged with mingw,
