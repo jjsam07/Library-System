@@ -1,5 +1,15 @@
 # Not implemented
-isdatevalid, isleapyear, isnamevalid
+isdatevalid, isleapyear, isnamevalid  
+
+#  
+1. User authentication  
+  - Guest  
+  - User  
+  - Admin User  
+  
+2. Updating information  
+  - Updating book information  
+  - User information  
 
 #  
 1. User authentication  
