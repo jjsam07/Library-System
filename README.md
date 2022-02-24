@@ -1,6 +1,16 @@
 # Not implemented
 isdatevalid, isleapyear, isnamevalid
 
+#  
+1. User authentication  
+  - Guest  
+  - User  
+  - Admin User  
+  
+2. Updating information  
+  - Updating book information  
+  - User information  
+  
 # How to compile in Windows with OpenCOBOLIDE
 Because OpenCOBOLIDE comes packaged with mingw,
 we can use ming32-make to automate our build process
