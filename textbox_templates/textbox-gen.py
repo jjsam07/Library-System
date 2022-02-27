@@ -47,6 +47,7 @@ def line_len(line):
 					SUBST_END = line.find("}", SUBST_IDX)
 					if SUBST_END != -1:
 						temp_len += int(line[SUBST_IDX:SUBST_END])
+						SUBST_IDX = SUBST_END+1
 					else:
 						print "DEBUG: \"" + line[SUBST_IDX:] + "\""
 						print "SUBST_IDX = %d" % SUBST_IDX
@@ -58,6 +59,8 @@ def line_len(line):
 						exit(1)
 				elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
 					SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
+					SUBST_IDX = SUBST_END+1
+					temp_len += 1
 				else:
 					print "DEBUG: \"" + line[SUBST_IDX:] + "\""
 					print "SUBST_IDX = %d" % SUBST_IDX
@@ -67,6 +70,79 @@ def line_len(line):
 					print " TT = type"
 					print " N = Number of characters or digits (optional)"
 					exit(1)
+				if line[SUBST_IDX] != "{":
+					print "Bruh, provide a variable to store your input."
+					exit(1)
+				else:
+					SUBST_IDX += 1
+					if line.find("}", SUBST_IDX) != -1: 
+						SUBST_END = line.find("}", SUBST_IDX)
+					else:
+						print "Bruh, please follow the format \'${input}{TT[:N]}{VARNAME}\'"
+						print "where:"
+						print " TT = type"
+						print " N = Number of characters or digits (optional)"
+						print " VARNAME = name of variable to store input."
+						exit(1)
+			
+			SUBST_END += 1
+			TEMP = line[STR_START:SUBST_START]
+			temp_len += len(TEMP)
+		elif "${output}" in line[SUBST_END:].lower():
+			SUBST_START = line[SUBST_END:].lower().index("${output}")+SUBST_END
+			SUBST_IDX = SUBST_START+9
+			STR_START = SUBST_END
+			
+#			print "\"" + line[SUBST_END:] + "\""
+#			print "SUBST_IDX = %d" % SUBST_IDX
+			if line[SUBST_IDX] != "{":
+				print "Bruh, I don't know what type your output is."
+				exit(1)
+			else:
+				SUBST_IDX += 1
+				if line.find(":", SUBST_IDX, SUBST_IDX+3) != -1:
+					SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
+					SUBST_IDX = SUBST_END+1
+					SUBST_END = line.find("}", SUBST_IDX)
+					if SUBST_END != -1:
+						temp_len += int(line[SUBST_IDX:SUBST_END])
+						SUBST_IDX = SUBST_END+1
+					else:
+						print "DEBUG: \"" + line[SUBST_IDX:] + "\""
+						print "SUBST_IDX = %d" % SUBST_IDX
+						print "Found \':\' but missing \'}\'"
+						print "Bruh, please follow the format \'${output}{TT[:N]}\'"
+						print "where:"
+						print "TT = type"
+						print "N = Number of characters or digits"
+						exit(1)
+				elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
+					SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
+					SUBST_IDX = SUBST_END+1
+					temp_len += 1
+				else:
+					print "DEBUG: \"" + line[SUBST_IDX:] + "\""
+					print "SUBST_IDX = %d" % SUBST_IDX
+					print "Expected \'}\': not found."
+					print "Bruh, please follow the format \'${output}{TT[:N]}\'"
+					print "where:"
+					print " TT = type"
+					print " N = Number of characters or digits (optional)"
+					exit(1)
+				if line[SUBST_IDX] != "{":
+					print "Bruh, provide a variable to be displayed."
+					exit(1)
+				else:
+					SUBST_IDX += 1
+					if line.find("}", SUBST_IDX) != -1: 
+						SUBST_END = line.find("}", SUBST_IDX)
+					else:
+						print "Bruh, please follow the format \'${output}{TT[:N]}{VARNAME}\'"
+						print "where:"
+						print " TT = type"
+						print " N = Number of characters or digits (optional)"
+						print " VARNAME = name of variable to be displayed."
+						exit(1)
 			
 			SUBST_END += 1
 			TEMP = line[STR_START:SUBST_START]
@@ -79,6 +155,7 @@ def line_len(line):
 	return temp_len
 
 def longest_line(lines):
+	print "\n ------------ Line lenght ------------"
 	longest = 0
 	temp_len = 0
 	for line in lines:
@@ -103,7 +180,7 @@ def textbox():
 #   --------------------- Part 1: Top ---------------------
 
 	OUTPUT_FILE.write("      *    Part 1: Top\n")
-	OUTPUT_FILE.write("           05 FILLER LINE 10 COL 10.\n")
+	OUTPUT_FILE.write("           05 FILLER LINE 2 COL 2.\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	
 	if TEXTBOX_TITLE == "\0":
@@ -139,7 +216,7 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 2: Top\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
@@ -163,7 +240,7 @@ def textbox():
 		LEN = len(TEMP)
 		
 		OUTPUT_FILE.write("      *    Content: Top margin {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
@@ -185,11 +262,18 @@ def textbox():
 		LINE_LEN = len(line)
 		
 		OUTPUT_FILE.write("      *    Content: Line {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
+		
+		IDX = 0
+		TEMP = " "*TEXTBOX_MARGIN_LEFT
+		LEN = len(TEMP)
+		while(IDX < LEN):
+			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			IDX += MAX_CHARACTERS
 		
 		SUBST_END = 0
 		STR_START = 0
@@ -203,6 +287,7 @@ def textbox():
 				STR_START = SUBST_END
 				INPUT_TYPE = "\0"
 				INPUT_LENGTH = "1"
+				INPUT_VARNAME = "\0"
 				
 				if line[SUBST_IDX] != "{":
 					print "Bruh, I don't know what type your input is."
@@ -216,6 +301,7 @@ def textbox():
 						SUBST_END = line.find("}", SUBST_IDX)
 						if SUBST_END != -1:
 							INPUT_LENGTH = line[SUBST_IDX:SUBST_END]
+							SUBST_IDX = SUBST_END+1
 						else:
 							print "Bruh, please follow the format \'${input}{TT[:N]}\'"
 							print "where:"
@@ -225,12 +311,28 @@ def textbox():
 					elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
 						SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
 						INPUT_TYPE = line[SUBST_IDX:SUBST_END]
+						SUBST_IDX = SUBST_END+1
 					else:
 						print "Bruh, please follow the format \'${input}{TT[:N]}\'"
 						print "where:"
 						print " TT = type"
 						print " N = Number of characters or digits (optional)"
 						exit(1)
+					if line[SUBST_IDX] != "{":
+						print "Bruh, provide a variable to store your input."
+						exit(1)
+					else:
+						SUBST_IDX += 1
+						if line.find("}", SUBST_IDX) != -1: 
+							SUBST_END = line.find("}", SUBST_IDX)
+							INPUT_VARNAME = line[SUBST_IDX:SUBST_END]
+						else:
+							print "Bruh, please follow the format \'${input}{TT[:N]}{VARNAME}\'"
+							print "where:"
+							print " TT = type"
+							print " N = Number of characters or digits (optional)"
+							print " VARNAME = name of variable to store input."
+							exit(1)
 				
 				SUBST_END += 1
 				IDX = 0
@@ -242,7 +344,72 @@ def textbox():
 				while(IDX < LEN):
 					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
-				OUTPUT_FILE.write("               10 PIC {}({}) TO YOUR-VARIABLE.\n".format(INPUT_TYPE, INPUT_LENGTH))
+				OUTPUT_FILE.write("               10 PIC {}({}) TO {}.\n".format(INPUT_TYPE, INPUT_LENGTH, INPUT_VARNAME))
+			elif "${output}" in line[SUBST_END:].lower():
+				
+				SUBST_START = line[SUBST_END:].lower().index("${output}")+SUBST_END
+				SUBST_IDX = SUBST_START+9
+				STR_START = SUBST_END
+				OUTPUT_TYPE = "\0"
+				OUTPUT_LENGTH = "1"
+				OUTPUT_VARNAME = "\0"
+				
+				if line[SUBST_IDX] != "{":
+					print "Bruh, I don't know what type your output is."
+					exit(1)
+				else:
+					SUBST_IDX += 1
+					if line.find(":", SUBST_IDX, SUBST_IDX+3) != -1:
+						SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
+						OUTPUT_TYPE = line[SUBST_IDX:SUBST_END]
+						SUBST_IDX = SUBST_END+1
+						SUBST_END = line.find("}", SUBST_IDX)
+						if SUBST_END != -1:
+							OUTPUT_LENGTH = line[SUBST_IDX:SUBST_END]
+							SUBST_IDX = SUBST_END+1
+						else:
+							print "Bruh, please follow the format \'${output}{TT[:N]}\'"
+							print "where:"
+							print "TT = type"
+							print "N = Number of characters or digits"
+							exit(1)
+					elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
+						SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
+						OUTPUT_TYPE = line[SUBST_IDX:SUBST_END]
+						SUBST_IDX = SUBST_END+1
+					else:
+						print "Bruh, please follow the format \'${output}{TT[:N]}\'"
+						print "where:"
+						print " TT = type"
+						print " N = Number of characters or digits (optional)"
+						exit(1)
+					if line[SUBST_IDX] != "{":
+						print "Bruh, provide a variable to be displayed."
+						exit(1)
+					else:
+						SUBST_IDX += 1
+						if line.find("}", SUBST_IDX) != -1: 
+							SUBST_END = line.find("}", SUBST_IDX)
+							OUTPUT_VARNAME = line[SUBST_IDX:SUBST_END]
+						else:
+							print "Bruh, please follow the format \'${output}{TT[:N]}{VARNAME}\'"
+							print "where:"
+							print " TT = type"
+							print " N = Number of characters or digits (optional)"
+							print " VARNAME = name of variable to be displayed."
+							exit(1)
+				
+				SUBST_END += 1
+				IDX = 0
+				TEMP = line[STR_START:SUBST_START]
+#				print "DEBUG: if-case: STR_START: %d" % STR_START
+#				print "DEBUG: if-case: SUBST_START: %d" % SUBST_START
+				LEN = len(TEMP)
+#				print "DEBUF: if-case: current line: \"" + TEMP + "\""
+				while(IDX < LEN):
+					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					IDX += MAX_CHARACTERS
+				OUTPUT_FILE.write("               10 PIC {}({}) FROM {}.\n".format(OUTPUT_TYPE, OUTPUT_LENGTH, OUTPUT_VARNAME))
 			else:
 				IDX = 0
 				if len(line) == 0:
@@ -255,6 +422,13 @@ def textbox():
 					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
 				break
+		
+		IDX = 0
+		TEMP = " "*TEXTBOX_MARGIN_RIGHT
+		LEN = len(TEMP)
+		while(IDX < LEN):
+			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			IDX += MAX_CHARACTERS
 		
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
@@ -271,7 +445,7 @@ def textbox():
 		LEN = len(TEMP)
 		
 		OUTPUT_FILE.write("      *    Content: Bottom margin {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
@@ -294,7 +468,7 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 4: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
@@ -315,7 +489,7 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 5: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
+	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	OUTPUT_FILE.write("                   15 VALUE \"\xc0\".\n")
 	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
@@ -332,7 +506,7 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 6: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 12.\n")
+	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 4.\n")
 	OUTPUT_FILE.write("               10 FILLER BACKGROUND-COLOR 0.\n")
 	while(IDX < LEN):
 		OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
@@ -405,4 +579,5 @@ def main():
 #	longest_line(TEXTBOX_CONTENT)
 		
 if __name__ == '__main__':
-	main()
+ 	main()
+#	line_len("${input}{9}")
