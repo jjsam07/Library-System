@@ -1,5 +1,5 @@
 PROGNAME = librarysystem
-OBJ_DIR = cobol_obj
+OBJ_DIR = obj
 SRC_DIR = src
 MAIN_SRC =  $(SRC_DIR)/main.cob
 COBC_OPTION = -c
