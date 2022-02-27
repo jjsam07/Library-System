@@ -1,0 +1,6 @@
+[1] Add a book
+[2] Search for a book
+[3] Browse library
+[4] Delete book
+
+Choice: ${input}{X:10}

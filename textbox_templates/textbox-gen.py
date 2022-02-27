@@ -16,20 +16,18 @@ TEXTBOX_MARGIN_BOTTOM = 0
 TEXTBOX_TITLE = "\0"
 TEXTBOX_CONTENT = "\0"
 TEXTBOX_NAME = "\0"
-LONGEST_LINE = 0
-LINES = 0
-TEMP = 0
-IDX = 0
-LEN = 0
-MULT = 0
+#LONGEST_LINE = 0
+#TEMP = 0
+#IDX = 0
+#LEN = 0
+#MULT = 0
 
 def textbox():
-	global LONGEST_LINE
-	global LINES
-	global TEMP
-	global IDX
-	global LEN
-	global MULT
+#	global LONGEST_LINE
+#	global TEMP
+#	global IDX
+#	global LEN
+#	global MULT
 	
 	for line in TEXTBOX_CONTENT:
 		print(line)
@@ -38,7 +36,6 @@ def textbox():
 	OUTPUT_FILE.write("           05 BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 0.\n\n")
 	
 	LONGEST_LINE = len(max(TEXTBOX_CONTENT, key=len))
-	LINES = len(TEXTBOX_CONTENT)
 	
 #   --------------------- Part 1: Top ---------------------
 
@@ -122,18 +119,70 @@ def textbox():
 	for line in TEXTBOX_CONTENT:
 		IDX = 0
 		PADDING = LONGEST_LINE-len(line)
-		TEMP = (" "*TEXTBOX_MARGIN_LEFT)+line+(" "*(TEXTBOX_MARGIN_RIGHT+PADDING))
-		LEN = len(TEMP)
-	
+		LINE_LEN = len(line)
+		
 		OUTPUT_FILE.write("      *    Content: Line {}\n".format(COUNTER))
 		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 10.\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
-		while(IDX < LEN):
-			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
-			IDX += MAX_CHARACTERS
+		
+		SUBST_END = 0
+		STR_START = 0
+		while(SUBST_END < LINE_LEN):
+			if "${input}" in line[SUBST_END:].lower():
+				SUBST_START = line[SUBST_END:].lower().index("${input}")
+				SUBST_IDX = SUBST_START+8
+				STR_START = SUBST_END
+				INPUT_TYPE = "\0"
+				INPUT_LENGTH = "1"
+				
+				if line[SUBST_IDX] != "{":
+					print "Bruh, I don't know that type your input is."
+					exit(1)
+				else:
+					SUBST_IDX += 1
+					SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
+					if SUBST_END != -1:
+						INPUT_TYPE = line[SUBST_IDX:SUBST_END]
+						SUBST_IDX = SUBST_END+1
+						SUBST_END = line.find("}", SUBST_IDX)
+						if SUBST_END != -1:
+							INPUT_LENGTH = line[SUBST_IDX:SUBST_END]
+						else:
+							print "Bruh, please follow the format \'${input}{TT[:N]}\'"
+							print "where:"
+							print "TT = type"
+							print "N = Number of characters or digits"
+							exit(1)
+					SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
+					if SUBST_END != -1:
+						INPUT_TYPE = line[SUBST_IDX:SUBST_END]
+					else:
+						print "Bruh, please follow the format \'${input}{TT[:N]}\'"
+						print "where:"
+						print " TT = type"
+						print " N = Number of characters or digits (optional)"
+						exit(1)
+				
+				SUBST_END += 1
+				IDX = 0
+				TEMP = line[STR_START:SUBST_START]
+				LEN = len(TEMP)
+				while(IDX < LEN):
+					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					IDX += MAX_CHARACTERS
+				OUTPUT_FILE.write("               10 PIC {}({}) TO YOUR-VARIABLE.\n".format(INPUT_TYPE, INPUT_LENGTH))
+			else:
+				IDX = 0
+				TEMP = line[STR_START:]
+				LEN = len(TEMP)
+				while(IDX < LEN):
+					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					IDX += MAX_CHARACTERS
+				break
+		
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
 		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
