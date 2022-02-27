@@ -107,6 +107,7 @@
                    MOVE 'N' TO BAVAIL-WS
                END-IF
            DISPLAY " ".
+
        BorrowDetails.
            DISPLAY "Student Name: " WITH NO ADVANCING
            ACCEPT STUDENTNAME-WS
@@ -116,6 +117,7 @@
            ACCEPT BORROWDATE-WS
            DISPLAY "Return within 3 days" .
            DISPLAY " ".
+
        ReturnBooks.
            DISPLAY " "
            DISPLAY "Enter Book ID to be Returned : " WITH NO ADVANCING
