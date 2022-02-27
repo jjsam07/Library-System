@@ -35,7 +35,7 @@
                10 MM-WS PIC 9(2).
                10 DD-WS PIC 9(2).
                10 YYYY-WS PIC 9(4).
-
+       01 BAVAIL-WS PIC X Value 'Y'.
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
@@ -66,20 +66,14 @@
                    DISPLAY "Author's Name:" WITH NO ADVANCING
                    ACCEPT AUTHORNAME
 
-                   DISPLAY "Book Issue Date (MM/DD/YYYY):" WITH NO
+                   DISPLAY "Book Issue Date (DD/MM/YYYY):" WITH NO
                    ADVANCING
                    ACCEPT ISSUE-DATE
 
+                   DISPLAY "Book Availability: " BAVAIL-WS
+                   WITH NO ADVANCING
+
+                   DISPLAY " "
                    WRITE BOOK
                CLOSE BOOKRECORD
            END-IF.
-
-           OPEN INPUT BOOKRECORD.
-               PERFORM UNTIL EOF-WS = 'Y'
-                   READ BOOKRECORD INTO BOOK-WS
-                       AT END MOVE 'Y' TO EOF-WS
-                       NOT AT END DISPLAY BOOK-WS
-                   END-READ
-               END-PERFORM.
-           CLOSE BOOKRECORD.
-           EXIT PROGRAM.
