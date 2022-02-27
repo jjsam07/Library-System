@@ -1,11 +1,11 @@
        IDENTIFICATION DIVISION.
        PROGRAM-ID. Menu.
-       
+
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 OPTION-WS PIC 9.
-       
+
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
            DISPLAY "MAIN MENU"
@@ -13,7 +13,7 @@
            DISPLAY "2. SEARCH BOOKS"
            DISPLAY "3. VIEW BOOKS"
            DISPLAY "4. DELETE BOOKS"
-      *    DISPLAY "5. UPDATE PASSWORD"
+           DISPLAY "5. BORROW BOOKS"
            DISPLAY "0. EXIT"
            DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
            ACCEPT OPTION-WS
@@ -30,9 +30,9 @@
                    WHEN 4
                        CALL "DeleteBook"
                        EXIT PERFORM
-      *            WHEN 5
-      *                PERFORM updatecredentials
-      *                EXIT PERFORM
+                   WHEN 5
+                       CALL "BorrowBooks"
+                       EXIT PERFORM
                    WHEN 0
                        DISPLAY "Thank you come again next time"
                        STOP RUN
