@@ -1,5 +1,5 @@
                   IDENTIFICATION DIVISION.
-       PROGRAM-ID. BorrowBook.
+       PROGRAM-ID. BorrowBooks.
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
@@ -52,6 +52,8 @@
        01 Choice PIC 9(9).
        01 StayOpen PIC X Value 'Y'.
        01 BAVAIL-WS PIC X Value 'Y'.
+       01 LbExists PIC X.
+
        PROCEDURE DIVISION.
        StartPara.
            OPEN I-O BOOKRECORD
@@ -72,7 +74,7 @@
            CLOSE BOOKRECORD
            STOP RUN.
 
-           BorrowBooks.
+       BorrowBooks.
            OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
                    DISPLAY "Library record does not exist"
@@ -103,22 +105,34 @@
                OPEN EXTEND BOOKRECORD
                IF BAVAIL-WS = 'Y'
                    MOVE 'N' TO BAVAIL-WS
-               ELSE
-                   MOVE 'Y' TO BAVAIL-WS
+               END-IF
            DISPLAY " ".
        BorrowDetails.
            DISPLAY "Student Name: " WITH NO ADVANCING
-           ACCEPT STUDENTNAME
+           ACCEPT STUDENTNAME-WS
            DISPLAY "Student address: " WITH NO ADVANCING
-           ACCEPT STUDENTADDR
+           ACCEPT STUDENTADDR-WS
            DISPLAY "Date Borrowed (DD/MM/YYYY): " WITH NO ADVANCING
-           ACCEPT BORROWDATE
+           ACCEPT BORROWDATE-WS
            DISPLAY "Return within 3 days" .
            DISPLAY " ".
        ReturnBooks.
            DISPLAY " "
            DISPLAY "Enter Book ID to be Returned : " WITH NO ADVANCING
            Accept BOOK-ID.
-           DELETE BOOKRECORD
-                INVALID KEY DISPLAY "KEY Doesn't Exist"
-           END-DELETE.
+           READ BOOKRECORD
+                INVALID KEY MOVE 'N' TO LbExists
+           END-READ
+           IF LbExists ='N'
+               DISPLAY "Book Doesn't Exist"
+           ELSE
+               DISPLAY "ID: " BOOK-ID-WS
+               DISPLAY "Name: " BOOKNAME-WS
+               DISPLAY "Author: " AUTHORNAME-WS
+               DISPLAY "Student: " STUDENTNAME-WS
+               DISPLAY "THANK YOU"
+               OPEN EXTEND BOOKRECORD
+               IF BAVAIL-WS = 'N'
+                   MOVE 'Y' TO BAVAIL-WS
+               END-IF
+           END-IF.
