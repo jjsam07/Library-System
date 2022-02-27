@@ -4,7 +4,7 @@
       *    Part 1: Top
            05 FILLER LINE 10 COL 10.
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   15 VALUE "здддддддддддддддддддддддддд".
+                   15 VALUE "зддддддддддддддддддддддддддддддддд".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "©".
 
@@ -13,7 +13,7 @@
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
-                   15 VALUE "здддддддддддддддддддддд".
+                   15 VALUE "зддддддддддддддддддддддддддддд".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "© ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -27,7 +27,7 @@
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
-               10 VALUE "[1] Add a book".
+               10 VALUE "[1] Add a book               ".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -40,7 +40,7 @@
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
-               10 VALUE "[2] Search for a book".
+               10 VALUE "[2] Search for a book        ".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -53,7 +53,7 @@
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
-               10 VALUE "[3] Browse library".
+               10 VALUE "[3] Browse library           ".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -66,7 +66,7 @@
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
-               10 VALUE "[4] Delete book".
+               10 VALUE "[4] Delete book              ".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -79,6 +79,7 @@
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
+               10 VALUE "                             ".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -92,7 +93,9 @@
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "Ё".
                10 VALUE "Choice: ".
-               10 PIC 10(10) TO YOUR-VARIABLE.
+               10 PIC X(10) TO YOUR-VARIABLE.
+               10 VALUE " ".
+               10 PIC X(10) TO YOUR-VARIABLE.
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "Ё ".
                10 FILLER FOREGROUND-COLOR 0.
@@ -106,7 +109,7 @@
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE "ю".
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   15 VALUE "дддддддддддддддддддддды".
+                   15 VALUE "ддддддддддддддддддддддддддддды".
                10 FILLER FOREGROUND-COLOR 0.
                    15 VALUE " Ё".
                10 VALUE "  " BACKGROUND-COLOR 0.
@@ -116,10 +119,10 @@
                10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    15 VALUE "ю".
                10 FILLER FOREGROUND-COLOR 0.
-                   15 VALUE "дддддддддддддддддддддддддды".
+                   15 VALUE "ддддддддддддддддддддддддддддддддды".
                10 VALUE "  " BACKGROUND-COLOR 0.
 
       *    Part 6: Bottom
            05 FILLER LINE + 1 COL 12.
                10 FILLER BACKGROUND-COLOR 0.
-                   15 VALUE "                            ".
+                   15 VALUE "                                   ".

@@ -22,12 +22,75 @@ TEXTBOX_NAME = "\0"
 #LEN = 0
 #MULT = 0
 
+def line_len(line):
+#	print "DEBUG: line_len: \"" + line + "\""
+	temp_len = 0
+	LINE_LEN = len(line)
+	SUBST_END = 0
+	STR_START = 0
+	while(SUBST_END < LINE_LEN):
+		if "${input}" in line[SUBST_END:].lower():
+			SUBST_START = line[SUBST_END:].lower().index("${input}")+SUBST_END
+			SUBST_IDX = SUBST_START+8
+			STR_START = SUBST_END
+			
+#			print "\"" + line[SUBST_END:] + "\""
+#			print "SUBST_IDX = %d" % SUBST_IDX
+			if line[SUBST_IDX] != "{":
+				print "Bruh, I don't know what type your input is."
+				exit(1)
+			else:
+				SUBST_IDX += 1
+				if line.find(":", SUBST_IDX, SUBST_IDX+3) != -1:
+					SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
+					SUBST_IDX = SUBST_END+1
+					SUBST_END = line.find("}", SUBST_IDX)
+					if SUBST_END != -1:
+						temp_len += int(line[SUBST_IDX:SUBST_END])
+					else:
+						print "DEBUG: \"" + line[SUBST_IDX:] + "\""
+						print "SUBST_IDX = %d" % SUBST_IDX
+						print "Found \':\' but missing \'}\'"
+						print "Bruh, please follow the format \'${input}{TT[:N]}\'"
+						print "where:"
+						print "TT = type"
+						print "N = Number of characters or digits"
+						exit(1)
+				elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
+					SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
+				else:
+					print "DEBUG: \"" + line[SUBST_IDX:] + "\""
+					print "SUBST_IDX = %d" % SUBST_IDX
+					print "Expected \'}\': not found."
+					print "Bruh, please follow the format \'${input}{TT[:N]}\'"
+					print "where:"
+					print " TT = type"
+					print " N = Number of characters or digits (optional)"
+					exit(1)
+			
+			SUBST_END += 1
+			TEMP = line[STR_START:SUBST_START]
+			temp_len += len(TEMP)
+		else:
+			TEMP = line[STR_START:]
+			temp_len += len(TEMP)
+			break
+			
+	return temp_len
+
+def longest_line(lines):
+	longest = 0
+	temp_len = 0
+	for line in lines:
+		temp_len = line_len(line)
+		if temp_len > longest:
+			longest = temp_len
+		print line + " :-> %d" % temp_len
+		temp_len = 0
+	print "longest = %d" % longest
+	return longest
+
 def textbox():
-#	global LONGEST_LINE
-#	global TEMP
-#	global IDX
-#	global LEN
-#	global MULT
 	
 	for line in TEXTBOX_CONTENT:
 		print(line)
@@ -35,7 +98,7 @@ def textbox():
 	OUTPUT_FILE.write("       01 {} AUTO BACKGROUND-COLOR 7 FOREGROUND-COLOR 0.\n".format(TEXTBOX_NAME))
 	OUTPUT_FILE.write("           05 BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 0.\n\n")
 	
-	LONGEST_LINE = len(max(TEXTBOX_CONTENT, key=len))
+	LONGEST_LINE = longest_line(TEXTBOX_CONTENT)
 	
 #   --------------------- Part 1: Top ---------------------
 
@@ -118,7 +181,7 @@ def textbox():
 	COUNTER = 1
 	for line in TEXTBOX_CONTENT:
 		IDX = 0
-		PADDING = LONGEST_LINE-len(line)
+		PADDING = LONGEST_LINE-line_len(line)
 		LINE_LEN = len(line)
 		
 		OUTPUT_FILE.write("      *    Content: Line {}\n".format(COUNTER))
@@ -130,21 +193,24 @@ def textbox():
 		
 		SUBST_END = 0
 		STR_START = 0
-		while(SUBST_END < LINE_LEN):
+		while(SUBST_END <= LINE_LEN):
+#			print "DEBUF: current line: " + line
+#			print "DEBUG: SUBST_END: %d" % SUBST_END
 			if "${input}" in line[SUBST_END:].lower():
-				SUBST_START = line[SUBST_END:].lower().index("${input}")
+				
+				SUBST_START = line[SUBST_END:].lower().index("${input}")+SUBST_END
 				SUBST_IDX = SUBST_START+8
 				STR_START = SUBST_END
 				INPUT_TYPE = "\0"
 				INPUT_LENGTH = "1"
 				
 				if line[SUBST_IDX] != "{":
-					print "Bruh, I don't know that type your input is."
+					print "Bruh, I don't know what type your input is."
 					exit(1)
 				else:
 					SUBST_IDX += 1
-					SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
-					if SUBST_END != -1:
+					if line.find(":", SUBST_IDX, SUBST_IDX+3) != -1:
+						SUBST_END = line.find(":", SUBST_IDX, SUBST_IDX+3)
 						INPUT_TYPE = line[SUBST_IDX:SUBST_END]
 						SUBST_IDX = SUBST_END+1
 						SUBST_END = line.find("}", SUBST_IDX)
@@ -156,8 +222,8 @@ def textbox():
 							print "TT = type"
 							print "N = Number of characters or digits"
 							exit(1)
-					SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
-					if SUBST_END != -1:
+					elif line.find("}", SUBST_IDX, SUBST_IDX+3) != -1:
+						SUBST_END = line.find("}", SUBST_IDX, SUBST_IDX+3)
 						INPUT_TYPE = line[SUBST_IDX:SUBST_END]
 					else:
 						print "Bruh, please follow the format \'${input}{TT[:N]}\'"
@@ -169,15 +235,22 @@ def textbox():
 				SUBST_END += 1
 				IDX = 0
 				TEMP = line[STR_START:SUBST_START]
+#				print "DEBUG: if-case: STR_START: %d" % STR_START
+#				print "DEBUG: if-case: SUBST_START: %d" % SUBST_START
 				LEN = len(TEMP)
+#				print "DEBUF: if-case: current line: \"" + TEMP + "\""
 				while(IDX < LEN):
 					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
 				OUTPUT_FILE.write("               10 PIC {}({}) TO YOUR-VARIABLE.\n".format(INPUT_TYPE, INPUT_LENGTH))
 			else:
 				IDX = 0
-				TEMP = line[STR_START:]
+				if len(line) == 0:
+					TEMP = " "*PADDING
+				else:
+					TEMP = line[SUBST_END:]+(" "*PADDING)
 				LEN = len(TEMP)
+#				print "DEBUF: else-case: current line: \"" + TEMP + "\""
 				while(IDX < LEN):
 					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
@@ -329,6 +402,7 @@ def main():
 		return 0
 		
 	textbox()
+#	longest_line(TEXTBOX_CONTENT)
 		
 if __name__ == '__main__':
 	main()
