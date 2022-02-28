@@ -1,4 +1,4 @@
-       IDENTIFICATION DIVISION.
+                  IDENTIFICATION DIVISION.
        PROGRAM-ID. BorrowBooks.
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
@@ -13,16 +13,45 @@
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       COPY bookrecord-fs.
-       
+       01 BOOK.
+           05 BOOK-ID PIC 9(10).
+           05 BOOKNAME PIC X(50).
+           05 AUTHORNAME PIC X(50).
+           05 STUDENTNAME PIC X(50).
+           05 STUDENTADDR PIC X(300).
+           05 ISSUE-DATE.
+               10 MM PIC 9(2).
+               10 DD PIC 9(2).
+               10 YYYY PIC 9(4).
+       01 BORROWBOOK.
+           05 BBOOK-ID PIC 9(10).
+           05 BORROWDATE.
+               10 BMM PIC 9(2).
+               10 BDD PIC 9(2).
+               10 BYYYY PIC 9(4).
+       01 BAVAIL PIC X.
        WORKING-STORAGE SECTION.
-       COPY bookrecord-ws.
-       
+       01 BOOK-WS.
+           05 BOOK-ID-WS PIC 9(10).
+           05 BOOKNAME-WS PIC X(50).
+           05 AUTHORNAME-WS PIC X(50).
+           05 STUDENTNAME-WS PIC X(50).
+           05 STUDENTADDR-WS PIC X(300).
+           05 ISSUE-DATE-WS.
+               10 MM-WS PIC 9(2).
+               10 DD-WS PIC 9(2).
+               10 YYYY-WS PIC 9(4).
+       01 BORROWBOOK-WS.
+           05 BBOOK-ID-WS PIC 9(10).
+           05 BORROWDATE-WS.
+               10 BMM-WS PIC 9(2).
+               10 BDD-WS PIC 9(2).
+               10 BYYYY-WS PIC 9(4).
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
        01 Choice PIC 9(9).
        01 StayOpen PIC X Value 'Y'.
-       
+       01 BAVAIL-WS PIC X Value 'Y'.
        01 LbExists PIC X.
 
        PROCEDURE DIVISION.
@@ -46,7 +75,7 @@
            STOP RUN.
 
        BorrowBooks.
-           OPEN I-O BOOKRECORD
+           OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
                    DISPLAY "Library record does not exist"
                    EXIT PROGRAM
@@ -58,13 +87,10 @@
                    KEY IS BOOK-ID
                    INVALID KEY DISPLAY "No records found"
                    NOT INVALID KEY PERFORM BorrowDetails
+                   PERFORM ShowBookDetails
+               DISPLAY "Return "
                END-READ
-               IF BAVAIL-WS = 'Y'
-                   DISPLAY "Book is available"
-                   MOVE 'N' TO BAVAIL
-                   WRITE BOOK
-               END-IF
-               PERFORM ShowBookDetails
+
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
 
@@ -76,6 +102,10 @@
            DISPLAY "Student address: " STUDENTADDR-WS.
            DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
            DISPLAY "Date Borrowed: " BDD-WS "/" BMM-WS "/" BYYYY-WS.
+               OPEN EXTEND BOOKRECORD
+               IF BAVAIL-WS = 'Y'
+                   MOVE 'N' TO BAVAIL-WS
+               END-IF
            DISPLAY " ".
 
        BorrowDetails.
