@@ -61,8 +61,8 @@
                END-READ
                IF BAVAIL-WS = 'Y'
                    DISPLAY "Book is available"
-                   MOVE 'N' TO BAVAIL
-                   WRITE BOOK
+                   MOVE 'N' TO BAVAIL-WS
+                   WRITE BOOK FROM BOOK-WS
                END-IF
                PERFORM ShowBookDetails
            CLOSE BOOKRECORD.
