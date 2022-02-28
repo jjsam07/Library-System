@@ -13,11 +13,29 @@
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       COPY bookrecord-fs.
-       
+       01 BOOK.
+           05 BOOK-ID PIC 9(10).
+           05 BOOKNAME PIC X(50).
+           05 AUTHORNAME PIC X(50).
+           05 STUDENTNAME PIC X(50).
+           05 STUDENTADDR PIC X(300).
+           05 ISSUE-DATE.
+               10 MM PIC 9(2).
+               10 DD PIC 9(2).
+               10 YYYY PIC 9(4).
+           05 BAVAIL PIC X.
        WORKING-STORAGE SECTION.
-       COPY bookrecord-ws.
-       
+       01 BOOK-WS.
+           05 BOOK-ID-WS PIC 9(10).
+           05 BOOKNAME-WS PIC X(50).
+           05 AUTHORNAME-WS PIC X(50).
+           05 STUDENTNAME-WS PIC X(50).
+           05 STUDENTADDR-WS PIC X(300).
+           05 ISSUE-DATE-WS.
+               10 MM-WS PIC 9(2).
+               10 DD-WS PIC 9(2).
+               10 YYYY-WS PIC 9(4).
+           05 BAVAIL-WS PIC X.
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
