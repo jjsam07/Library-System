@@ -155,14 +155,14 @@ def line_len(line):
 	return temp_len
 
 def longest_line(lines):
-	print "\n ------------ Line lenght ------------"
+	print "\n ------------ Line length ------------"
 	longest = 0
 	temp_len = 0
 	for line in lines:
 		temp_len = line_len(line)
 		if temp_len > longest:
 			longest = temp_len
-		print line + " :-> %d" % temp_len
+		print "\'" + line + "\'" + " :-> %d" % temp_len
 		temp_len = 0
 	print "longest = %d" % longest
 	return longest
@@ -170,7 +170,7 @@ def longest_line(lines):
 def textbox():
 	
 	for line in TEXTBOX_CONTENT:
-		print(line)
+		print "\'" + line + "\'"
 	
 	OUTPUT_FILE.write("       01 {} AUTO BACKGROUND-COLOR 7 FOREGROUND-COLOR 0.\n".format(TEXTBOX_NAME))
 	OUTPUT_FILE.write("           05 BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 0.\n\n")
