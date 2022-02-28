@@ -13,40 +13,11 @@
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       01 BOOK.
-           05 BOOK-ID PIC 9(10).
-           05 BOOKNAME PIC X(50).
-           05 AUTHORNAME PIC X(50).
-           05 STUDENTNAME PIC X(50).
-           05 STUDENTADDR PIC X(300).
-           05 ISSUE-DATE.
-               10 MM PIC 9(2).
-               10 DD PIC 9(2).
-               10 YYYY PIC 9(4).
-       01 BORROWBOOK.
-           05 BBOOK-ID PIC 9(10).
-           05 BORROWDATE.
-               10 BMM PIC 9(2).
-               10 BDD PIC 9(2).
-               10 BYYYY PIC 9(4).
-       01 BAVAIL PIC X.
+       COPY bookrecord-fs.
+
        WORKING-STORAGE SECTION.
-       01 BOOK-WS.
-           05 BOOK-ID-WS PIC 9(10).
-           05 BOOKNAME-WS PIC X(50).
-           05 AUTHORNAME-WS PIC X(50).
-           05 STUDENTNAME-WS PIC X(50).
-           05 STUDENTADDR-WS PIC X(300).
-           05 ISSUE-DATE-WS.
-               10 MM-WS PIC 9(2).
-               10 DD-WS PIC 9(2).
-               10 YYYY-WS PIC 9(4).
-       01 BORROWBOOK-WS.
-           05 BBOOK-ID-WS PIC 9(10).
-           05 BORROWDATE-WS.
-               10 BMM-WS PIC 9(2).
-               10 BDD-WS PIC 9(2).
-               10 BYYYY-WS PIC 9(4).
+       COPY bookrecord-ws.
+       
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
        01 Choice PIC 9(9).
