@@ -22,12 +22,10 @@
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
        01 Choice PIC 9(9).
        01 StayOpen PIC X Value 'Y'.
-       01 BAVAIL-WS PIC X Value 'Y'.
        01 LbExists PIC X.
 
        PROCEDURE DIVISION.
        StartPara.
-           OPEN I-O BOOKRECORD
            PERFORM UNTIL StayOpen='N'
                DISPLAY " "
                DISPLAY "BORROW or RETURN?"
@@ -42,7 +40,6 @@
                    WHEN OTHER MOVE 'N' TO StayOpen
                END-EVALUATE
            END-PERFORM.
-           CLOSE BOOKRECORD
            STOP RUN.
 
        BorrowBooks.
@@ -59,9 +56,11 @@
                    INVALID KEY DISPLAY "No records found"
                    NOT INVALID KEY PERFORM BorrowDetails
                    PERFORM ShowBookDetails
-               DISPLAY "Return "
                END-READ
-
+               IF BAVAIL-WS = 'Y'
+                   MOVE 'N' TO BAVAIL-WS
+                   WRITE BOOK FROM BOOK-WS
+               END-IF
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
 
@@ -73,10 +72,6 @@
            DISPLAY "Student address: " STUDENTADDR-WS.
            DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
            DISPLAY "Date Borrowed: " BDD-WS "/" BMM-WS "/" BYYYY-WS.
-               OPEN EXTEND BOOKRECORD
-               IF BAVAIL-WS = 'Y'
-                   MOVE 'N' TO BAVAIL-WS
-               END-IF
            DISPLAY " ".
 
        BorrowDetails.
@@ -104,7 +99,6 @@
                DISPLAY "Author: " AUTHORNAME-WS
                DISPLAY "Student: " STUDENTNAME-WS
                DISPLAY "THANK YOU"
-               OPEN EXTEND BOOKRECORD
                IF BAVAIL-WS = 'N'
                    MOVE 'Y' TO BAVAIL-WS
                END-IF
