@@ -122,7 +122,7 @@
            DISPLAY " "
            DISPLAY "Enter Book ID to be Returned : " WITH NO ADVANCING
            Accept BOOK-ID.
-           READ BOOKRECORD
+           READ BOOKRECORD INTO BOOK-ID
                 INVALID KEY MOVE 'N' TO LbExists
            END-READ
            IF LbExists ='N'

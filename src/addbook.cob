@@ -23,7 +23,7 @@
                10 MM PIC 9(2).
                10 DD PIC 9(2).
                10 YYYY PIC 9(4).
-       01 BAVAIL PIC X.
+           05 BAVAIL PIC X.
        WORKING-STORAGE SECTION.
        01 BOOK-WS.
            05 BOOK-ID-WS PIC 9(10).
@@ -35,7 +35,7 @@
                10 MM-WS PIC 9(2).
                10 DD-WS PIC 9(2).
                10 YYYY-WS PIC 9(4).
-       01 BAVAIL-WS PIC X.
+           05 BAVAIL-WS PIC X.
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.

@@ -9,7 +9,7 @@
            RECORD KEY IS BOOK-ID
            ALTERNATE RECORD KEY IS BOOKNAME
            FILE STATUS IS FILE-STATUS-WS.
-            
+
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
@@ -23,7 +23,7 @@
                10 MM PIC 9(2).
                10 DD PIC 9(2).
                10 YYYY PIC 9(4).
-       
+           05 BAVAIL PIC X.
        WORKING-STORAGE SECTION.
        01 BOOK-WS.
            05 BOOK-ID-WS PIC 9(10).
@@ -35,19 +35,19 @@
                10 MM-WS PIC 9(2).
                10 DD-WS PIC 9(2).
                10 YYYY-WS PIC 9(4).
-       
+           05 BAVAIL-WS PIC X.
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
-       
+
        PROCEDURE DIVISION.
            OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
                    DISPLAY "Library record does not exist"
                    EXIT PROGRAM
                END-IF
-               
+
                CALL "HeadMessage" USING "SEARCH BOOKS"
-               
+
                DISPLAY "Enter Book Name to search: " WITH NO ADVANCING
                ACCEPT BOOKNAME
                READ BOOKRECORD INTO BOOK-WS
@@ -55,15 +55,14 @@
                    INVALID KEY DISPLAY "Not found"
                    NOT INVALID KEY PERFORM ShowBookDetails
                END-READ
-               
+
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
-       
+
        ShowBookDetails.
            DISPLAY "ID: " BOOK-ID-WS.
            DISPLAY "Name: " BOOKNAME-WS.
            DISPLAY "Author: " AUTHORNAME-WS.
-           DISPLAY "Student: " STUDENTNAME-WS.
-           DISPLAY "Student address: " STUDENTADDR-WS.
+           DISPLAY "Available?: " BAVAIL-WS.
            DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
            DISPLAY " ".
