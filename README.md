@@ -1,5 +1,5 @@
 # Not implemented
-isdatevalid, isleapyear, isnamevalid
+isdatevalid, isleapyear, isnamevalid  
 
 #  
 1. User authentication  
