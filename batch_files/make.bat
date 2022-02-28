@@ -3,7 +3,7 @@ set COB_MAIN_DIR=-YOUR_PATH-
 
 :: settings for cobc
 set COB_CONFIG_DIR=%COB_MAIN_DIR%config
-set COB_COPY_DIR=%COB_MAIN_DIR%copy
+set COB_COPY_DIR=%~dp0copy
 set COB_CFLAGS=-I"%COB_MAIN_DIR%include"
 set COB_LDFLAGS=-L"%COB_MAIN_DIR%lib"
 
