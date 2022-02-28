@@ -17,7 +17,7 @@
 
        WORKING-STORAGE SECTION.
        COPY bookrecord-ws.
-       
+
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
        01 Choice PIC 9(9).
@@ -59,10 +59,10 @@
                END-READ
                IF BAVAIL-WS = 'Y'
                    MOVE 'N' TO BAVAIL-WS
-                   WRITE BOOK FROM BOOK-WS
+                   REWRITE BOOK FROM BOOK-WS
                END-IF
            CLOSE BOOKRECORD.
-           EXIT PROGRAM.
+           CALL 'Menu' USING 'BorrowBooks'.
 
        ShowBookDetails.
            DISPLAY "ID: " BOOK-ID-WS.
@@ -103,3 +103,4 @@
                    MOVE 'Y' TO BAVAIL-WS
                END-IF
            END-IF.
+           CALL 'Menu' USING 'BorrowBooks'.

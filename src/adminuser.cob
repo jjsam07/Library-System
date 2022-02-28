@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. Menu.
+       PROGRAM-ID. adminuser.
 
        ENVIRONMENT DIVISION.
        DATA DIVISION.
@@ -8,28 +8,18 @@
 
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
-           DISPLAY " "
-           DISPLAY "ADMIN MAIN MENU"
-           DISPLAY "1. ADD BOOKS"
-           DISPLAY "2. SEARCH BOOKS"
-           DISPLAY "3. VIEW BOOKS"
-           DISPLAY "4. DELETE BOOKS"
-           DISPLAY "0. EXIT"
+           DISPLAY "LOGIN"
+           DISPLAY "[1] ADMIN"
+           DISPLAY "[2] STUDENT"
+           DISPLAY "[0] EXIT"
            DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
-
            ACCEPT OPTION-WS
                EVALUATE OPTION-WS
                    WHEN 1
-                       CALL "AddBook"
+                       CALL "Menu"
                        EXIT PERFORM
                    WHEN 2
-                       CALL "ASearchBook"
-                       EXIT PERFORM
-                   WHEN 3
-                       CALL "SViewBooks"
-                       EXIT PERFORM
-                   WHEN 4
-                       CALL "DeleteBook"
+                       CALL "StudentMenu"
                        EXIT PERFORM
                    WHEN 0
                        DISPLAY "Thank you come again next time"

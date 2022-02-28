@@ -6,6 +6,6 @@
        PROCEDURE DIVISION.
            CALL "WelcomeMessage".
            PERFORM UNTIL 1 < 0
-               CALL "Menu"
+               CALL "adminuser"
            END-PERFORM
            STOP RUN.

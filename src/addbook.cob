@@ -14,10 +14,10 @@
        FILE SECTION.
        FD BOOKRECORD.
        COPY bookrecord-fs.
-       
+
        WORKING-STORAGE SECTION.
        COPY bookrecord-ws.
-       
+
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
@@ -30,10 +30,8 @@
       *    ELSE
       *        CLOSE BOOKRECORD
       *    END-IF.
-
-           CALL "HeadMessage" USING "ADD NEW BOOKS".
-
-           DISPLAY "               ADD BOOKS".
+           DISPLAY " "
+           DISPLAY "ADD BOOKS".
            DISPLAY "BOOK-ID:" WITH NO ADVANCING
            ACCEPT BOOK-ID.
 
@@ -59,3 +57,4 @@
                    WRITE BOOK
                CLOSE BOOKRECORD
            END-IF.
+           CALL 'Menu' USING 'AddBook'.

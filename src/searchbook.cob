@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. SearchBook.
+       PROGRAM-ID. SSearchBook.
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
@@ -7,17 +7,17 @@
            ORGANIZATION IS INDEXED
            ACCESS MODE IS RANDOM
            RECORD KEY IS BOOK-ID
-           ALTERNATE RECORD KEY IS BOOKNAME
+           ALTERNATE RECORD KEY IS BOOK-ID
            FILE STATUS IS FILE-STATUS-WS.
 
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
        COPY bookrecord-fs.
-       
+
        WORKING-STORAGE SECTION.
        COPY bookrecord-ws.
-       
+
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
 
@@ -28,18 +28,17 @@
                    EXIT PROGRAM
                END-IF
 
-               CALL "HeadMessage" USING "SEARCH BOOKS"
-
-               DISPLAY "Enter Book Name to search: " WITH NO ADVANCING
-               ACCEPT BOOKNAME
+               DISPLAY " "
+               DISPLAY "Enter Book ID to search: " WITH NO ADVANCING
+               ACCEPT BOOK-ID
                READ BOOKRECORD INTO BOOK-WS
-                   KEY IS BOOKNAME
+                   KEY IS BOOK-ID
                    INVALID KEY DISPLAY "Not found"
                    NOT INVALID KEY PERFORM ShowBookDetails
                END-READ
 
            CLOSE BOOKRECORD.
-           EXIT PROGRAM.
+           CALL "StudentMenu" USING "SSearchBook".
 
        ShowBookDetails.
            DISPLAY "ID: " BOOK-ID-WS.

@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. AViewBooks.
+       PROGRAM-ID. SViewBooks.
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
@@ -35,7 +35,7 @@
                END-PERFORM
 
            CLOSE BOOKRECORD.
-           CALL "Menu" USING "AViewBooks".
+           CALL "Menu" USING "SViewBooks".
        ShowBookDetails.
            DISPLAY " "
            DISPLAY "ID: " BOOK-ID-WS.

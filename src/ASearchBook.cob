@@ -1,13 +1,13 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. AViewBooks.
+       PROGRAM-ID. ASearchBook.
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
            SELECT BOOKRECORD ASSIGN TO "library.txt"
            ORGANIZATION IS INDEXED
-           ACCESS MODE IS SEQUENTIAL
+           ACCESS MODE IS RANDOM
            RECORD KEY IS BOOK-ID
-           ALTERNATE RECORD KEY IS BOOKNAME
+           ALTERNATE RECORD KEY IS BOOK-ID
            FILE STATUS IS FILE-STATUS-WS.
 
        DATA DIVISION.
@@ -18,9 +18,9 @@
        WORKING-STORAGE SECTION.
        COPY bookrecord-ws.
 
-       01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
+
        PROCEDURE DIVISION.
            OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
@@ -28,16 +28,19 @@
                    EXIT PROGRAM
                END-IF
 
-               PERFORM UNTIL EOF-WS = "Y"
-                   READ BOOKRECORD INTO BOOK-WS
-                   AT END MOVE "Y" TO EOF-WS
-                   NOT AT END PERFORM ShowBookDetails
-               END-PERFORM
+               DISPLAY " "
+               DISPLAY "Enter Book ID to search: " WITH NO ADVANCING
+               ACCEPT BOOK-ID
+               READ BOOKRECORD INTO BOOK-WS
+                   KEY IS BOOK-ID
+                   INVALID KEY DISPLAY "Not found"
+                   NOT INVALID KEY PERFORM ShowBookDetails
+               END-READ
 
            CLOSE BOOKRECORD.
-           CALL "Menu" USING "AViewBooks".
+           CALL "Menu" USING "ASearchBook".
+
        ShowBookDetails.
-           DISPLAY " "
            DISPLAY "ID: " BOOK-ID-WS.
            DISPLAY "Name: " BOOKNAME-WS.
            DISPLAY "Author: " AUTHORNAME-WS.
