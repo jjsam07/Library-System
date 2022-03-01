@@ -5,12 +5,15 @@
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 OPTION-WS PIC 9.
+       77 PASSWORD-WS PIC X(10).
        77 DUMMY-WS PIC X.
        
        SCREEN SECTION.
+       COPY enter-password-screen.
        COPY login-screen.
        COPY farewell-screen.
        COPY invalid-input-screen.
+       COPY wrong-password-screen.
        COPY clear-screen.
 
        PROCEDURE DIVISION.
@@ -24,11 +27,14 @@
            DISPLAY CLEAR-SCREEN
                EVALUATE OPTION-WS
                    WHEN 1
-                       CALL "adminmenu"
-                       EXIT PERFORM
+                       ACCEPT ENTER-PASSWORD-SCREEN
+                       IF PASSWORD-WS = "password"
+                           CALL "adminmenu"
+                       ELSE
+                           ACCEPT WRONG-PASSWORD-SCREEN
+                       END-IF
                    WHEN 2
                        CALL "StudentMenu"
-                       EXIT PERFORM
                    WHEN 0
                        ACCEPT FAREWELL-SCREEN
       *                ACCEPT DUMMY-WS
