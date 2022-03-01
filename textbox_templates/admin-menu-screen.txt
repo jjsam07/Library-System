@@ -1,4 +1,4 @@
-ADMIN MAIN MENU
+${title}{Admin: Main menu}
 1. ADD BOOKS
 2. SEARCH BOOKS
 3. VIEW BOOKS

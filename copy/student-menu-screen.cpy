@@ -5,7 +5,10 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
+                   20 VALUE "Ú".
+               15 VALUE " Student: Main menu ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
+                   20 VALUE "ÄÄÄÄÄÄ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "¿".
 
@@ -28,7 +31,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "STUDENT MAIN MENU     ".
+               15 VALUE "1. SEARCH BOOKS       ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -41,7 +44,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "1. SEARCH BOOKS       ".
+               15 VALUE "2. VIEW BOOKS         ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -54,7 +57,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "2. VIEW BOOKS         ".
+               15 VALUE "3. BORROW/RETURN BOOKS".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -67,19 +70,6 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "3. BORROW/RETURN BOOKS".
-               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "³ ".
-               15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "³".
-               15 VALUE "  " BACKGROUND-COLOR 0.
-
-      *    Content: Line 5
-           10 FILLER LINE + 1 COL 2.
-               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "³ ".
-               15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "³".
                15 VALUE "0. EXIT               ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
@@ -87,7 +77,7 @@
                    20 VALUE "³".
                15 VALUE "  " BACKGROUND-COLOR 0.
 
-      *    Content: Line 6
+      *    Content: Line 5
            10 FILLER LINE + 1 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".

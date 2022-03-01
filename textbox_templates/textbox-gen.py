@@ -159,6 +159,16 @@ def longest_line(lines):
 	longest = 0
 	temp_len = 0
 	for line in lines:
+		if "${title}" in line:
+			continue
+		if "${marginleft}" in line:
+			continue
+		if "${marginright}" in line:
+			continue
+		if "${margintop}" in line:
+			continue
+		if "${marginbottom}" in line:
+			continue
 		temp_len = line_len(line)
 		if temp_len > longest:
 			longest = temp_len
@@ -168,9 +178,93 @@ def longest_line(lines):
 	return longest
 
 def textbox():
+	global TEXTBOX_MARGIN_LEFT
+	global TEXTBOX_MARGIN_RIGHT
+	global TEXTBOX_MARGIN_TOP
+	global TEXTBOX_MARGIN_BOTTOM
+	global TEXTBOX_TITLE
 	
-#	for line in TEXTBOX_CONTENT:
-#		print "\'" + line + "\'"
+	for line in TEXTBOX_CONTENT:
+		if "${title}" in line:
+			if line[8] != "{":
+				print "Bruh, please follow the format \'${title}{X}\'"
+				print "where:"
+				print " X = title of your choice"
+				exit(1)
+			else:
+				SUBST_END = line.find("}", 9)
+				if SUBST_END != -1:
+					TEXTBOX_TITLE = line[9:SUBST_END]
+				else:
+					print "Bruh, please follow the format \'${title}{X}\'"
+					print "where:"
+					print " X = title of your choice"
+					exit(1)
+			continue
+		if "${marginleft}" in line:
+			if line[13] != "{":
+				print "Bruh, please follow the format \'${marginleft}{X}\'"
+				print "where:"
+				print " X = your margin"
+				exit(1)
+			else:
+				SUBST_END = line.find("}", 14)
+				if SUBST_END != -1:
+					TEXTBOX_MARGIN_LEFT = int(line[14:SUBST_END])
+				else:
+					print "Bruh, please follow the format \'${marginleft}{X}\'"
+					print "where:"
+					print " X = your margin"
+					exit(1)
+			continue
+		if "${marginright}" in line:
+			if line[14] != "{":
+				print "Bruh, please follow the format \'${marginright}{X}\'"
+				print "where:"
+				print " X = your margin"
+				exit(1)
+			else:
+				SUBST_END = line.find("}", 15)
+				if SUBST_END != -1:
+					TEXTBOX_MARGIN_RIGHT = int(line[15:SUBST_END])
+				else:
+					print "Bruh, please follow the format \'${marginright}{X}\'"
+					print "where:"
+					print " X = your margin"
+					exit(1)
+			continue
+		if "${margintop}" in line:
+			if line[12] != "{":
+				print "Bruh, please follow the format \'${margintop}{X}\'"
+				print "where:"
+				print " X = your margin"
+				exit(1)
+			else:
+				SUBST_END = line.find("}", 13)
+				if SUBST_END != -1:
+					TEXTBOX_MARGIN_TOP = int(line[13:SUBST_END])
+				else:
+					print "Bruh, please follow the format \'${margintop}{X}\'"
+					print "where:"
+					print " X = your margin"
+					exit(1)
+			continue
+		if "${marginbottom}" in line:
+			if line[15] != "{":
+				print "Bruh, please follow the format \'${marginbottom}{X}\'"
+				print "where:"
+				print " X = your margin"
+				exit(1)
+			else:
+				SUBST_END = line.find("}", 16)
+				if SUBST_END != -1:
+					TEXTBOX_MARGIN_BOTTOM = int(line[16:SUBST_END])
+				else:
+					print "Bruh, please follow the format \'${marginbottom}{X}\'"
+					print "where:"
+					print " X = your margin"
+					exit(1)
+			continue
 	
 	OUTPUT_FILE.write("       01 {}.\n".format(TEXTBOX_NAME))
 	OUTPUT_FILE.write("       05 FILLER AUTO BACKGROUND-COLOR 7 FOREGROUND-COLOR 0.\n".format(TEXTBOX_NAME))
@@ -258,6 +352,17 @@ def textbox():
 		
 	COUNTER = 1
 	for line in TEXTBOX_CONTENT:
+		if "${title}" in line:
+			continue
+		if "${marginleft}" in line:
+			continue
+		if "${marginright}" in line:
+			continue
+		if "${margintop}" in line:
+			continue
+		if "${marginbottom}" in line:
+			continue
+			
 		IDX = 0
 		PADDING = LONGEST_LINE-line_len(line)
 		LINE_LEN = len(line)
@@ -521,7 +626,6 @@ def main():
 	global TEXTBOX_MARGIN_RIGHT
 	global TEXTBOX_MARGIN_TOP
 	global TEXTBOX_MARGIN_BOTTOM
-	global TEXTBOX_TITLE
 	global TEXTBOX_CONTENT
 	global TEXTBOX_NAME
 	count = 1
@@ -545,10 +649,6 @@ def main():
 			continue
 		if (i == '-n'):
 			TEXTBOX_NAME = sys.argv[count]
-			count += 1
-			continue
-		if (i == '-t'):
-			TEXTBOX_TITLE = sys.argv[count]
 			count += 1
 			continue
 		if (i == '-c'):

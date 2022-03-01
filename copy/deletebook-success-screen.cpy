@@ -5,8 +5,11 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "здддддддддддддддддддддддддддддддддддддддд".
-                   20 VALUE "дддддддддддддддддд".
+                   20 VALUE "з".
+               15 VALUE " Delete book ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
+                   20 VALUE "ддддддддддддддддддддддддддддддддддддддддд".
+                   20 VALUE "дддд".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "©".
 
@@ -86,9 +89,9 @@
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "Ё".
-               15 VALUE "Press any to continue...".
+               15 VALUE "Press any key to continue...".
                15 PIC X(1) TO DUMMY-WS.
-               15 VALUE "                             ".
+               15 VALUE "                         ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.

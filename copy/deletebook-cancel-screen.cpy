@@ -5,7 +5,10 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "зддддддддддддддддддддддддддддд".
+                   20 VALUE "з".
+               15 VALUE " Delete book ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
+                   20 VALUE "дддддддддддддддддддд".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "©".
 
@@ -14,7 +17,7 @@
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "зддддддддддддддддддддддддд".
+                   20 VALUE "зддддддддддддддддддддддддддддд".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "© ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -28,7 +31,7 @@
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "Ё".
-               15 VALUE "Operation cancelled      ".
+               15 VALUE "Operation cancelled          ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -41,7 +44,7 @@
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "Ё".
-               15 VALUE "                         ".
+               15 VALUE "                             ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -54,7 +57,7 @@
                    20 VALUE "Ё ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "Ё".
-               15 VALUE "Press any to continue...".
+               15 VALUE "Press any key to continue...".
                15 PIC X(1) TO DUMMY-WS.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "Ё ".
@@ -69,7 +72,7 @@
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "ю".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "ддддддддддддддддддддддддды".
+                   20 VALUE "ддддддддддддддддддддддддддддды".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE " Ё".
                15 VALUE "  " BACKGROUND-COLOR 0.
@@ -79,10 +82,10 @@
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "ю".
                15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "ддддддддддддддддддддддддддддды".
+                   20 VALUE "ддддддддддддддддддддддддддддддддды".
                15 VALUE "  " BACKGROUND-COLOR 0.
 
       *    Part 6: Bottom
            10 FILLER LINE + 1 COL 4.
                15 FILLER BACKGROUND-COLOR 0.
-                   20 VALUE "                               ".
+                   20 VALUE "                                   ".

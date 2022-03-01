@@ -1,3 +1,4 @@
+${title}{Add book}
 Book ID:           ${input}{9:10}{BOOK-ID}
 Book name:         ${input}{X:50}{BOOKNAME}
 Author's name:     ${input}{X:50}{AUTHORNAME}

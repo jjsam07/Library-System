@@ -5,7 +5,7 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
+                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "¿".
 
@@ -14,7 +14,7 @@
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
+                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "¿ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -28,7 +28,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "          Welcome        ".
+               15 VALUE "          Welcome            ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -41,7 +41,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "            to           ".
+               15 VALUE "             to              ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -54,7 +54,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "          Library        ".
+               15 VALUE "          Library            ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -67,7 +67,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "         Management      ".
+               15 VALUE "         Management          ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -80,7 +80,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "           System        ".
+               15 VALUE "           System            ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -93,7 +93,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "                         ".
+               15 VALUE "                             ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -106,7 +106,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "Press any to continue...".
+               15 VALUE "Press any key to continue...".
                15 PIC X(1) TO DUMMY-WS.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
@@ -121,7 +121,7 @@
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "À".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ".
+                   20 VALUE "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE " ³".
                15 VALUE "  " BACKGROUND-COLOR 0.
@@ -131,10 +131,10 @@
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "À".
                15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ".
+                   20 VALUE "ÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÙ".
                15 VALUE "  " BACKGROUND-COLOR 0.
 
       *    Part 6: Bottom
            10 FILLER LINE + 1 COL 4.
                15 FILLER BACKGROUND-COLOR 0.
-                   20 VALUE "                               ".
+                   20 VALUE "                                   ".

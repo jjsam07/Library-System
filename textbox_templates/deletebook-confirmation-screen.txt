@@ -1,3 +1,4 @@
+${title}{Delete book}
 Are you sure you want to delete:
 
     ${output}{X:50}{BOOKNAME-WS}

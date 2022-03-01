@@ -69,7 +69,18 @@
                                 EXIT PERFORM
                            END-IF
                        WHEN COB-SCR-F5
-                           EXIT PERFORM
+                           IF BEGINNING-OF-RECORD = "Y" THEN
+                               PERFORM BeginningOfRecord
+                           END-IF
+                           
+                           IF END-OF-RECORD = "Y" THEN
+                               PERFORM EndOfRecord
+                           END-IF
+                           
+                           IF BEGINNING-OF-RECORD = "N" AND
+                           END-OF-RECORD = "N" THEN
+                               EXIT PERFORM
+                           END-IF
                        WHEN OTHER
                            IF BEGINNING-OF-RECORD = "Y" THEN
                                PERFORM BeginningOfRecord

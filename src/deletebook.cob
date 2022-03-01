@@ -67,13 +67,18 @@
            ACCEPT DELETEBOOK-CONFIRMATION-SCREEN.
       *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
+      *    EXIT PROGRAM.
            
        DeleteSuccess.
            ACCEPT DELETEBOOK-SUCCESS-SCREEN.
       *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
+           CLOSE BOOKRECORD.
+           EXIT PROGRAM.
            
        BookNotFound.
            ACCEPT BOOK-NOT-FOUND-SCREEN.
       *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
+           CLOSE BOOKRECORD.
+           EXIT PROGRAM.

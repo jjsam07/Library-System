@@ -5,7 +5,10 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "ÚÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄÄ".
+                   20 VALUE "Ú".
+               15 VALUE " Login ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
+                   20 VALUE "ÄÄÄÄÄÄÄÄÄÄÄÄ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "¿".
 
@@ -28,7 +31,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "LOGIN          ".
+               15 VALUE "[1] ADMIN      ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -41,7 +44,7 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "[1] ADMIN      ".
+               15 VALUE "[2] STUDENT    ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
@@ -54,19 +57,6 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "[2] STUDENT    ".
-               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "³ ".
-               15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "³".
-               15 VALUE "  " BACKGROUND-COLOR 0.
-
-      *    Content: Line 4
-           10 FILLER LINE + 1 COL 2.
-               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "³ ".
-               15 FILLER FOREGROUND-COLOR 0.
-                   20 VALUE "³".
                15 VALUE "[0] EXIT       ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
@@ -74,7 +64,7 @@
                    20 VALUE "³".
                15 VALUE "  " BACKGROUND-COLOR 0.
 
-      *    Content: Line 5
+      *    Content: Line 4
            10 FILLER LINE + 1 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".

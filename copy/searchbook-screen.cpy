@@ -5,7 +5,10 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "зддддддддддддддддддддддддддддддддддддддд".
+                   20 VALUE "з".
+               15 VALUE " Search book ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
+                   20 VALUE "дддддддддддддддддддддддддд".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "©".
 

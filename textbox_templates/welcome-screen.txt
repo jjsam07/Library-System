@@ -1,7 +1,7 @@
           Welcome
-            to
+             to
           Library
          Management
            System
 
-Press any to continue...${input}{X}{DUMMY-WS}
+Press any key to continue...${input}{X}{DUMMY-WS}

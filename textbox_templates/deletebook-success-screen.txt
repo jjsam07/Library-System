@@ -1,5 +1,6 @@
+${title}{Delete book}
 Successfully deleted:
 
     ${output}{X:50}{BOOKNAME-WS}
 
-Press any to continue...${input}{X}{DUMMY-WS}
+Press any key to continue...${input}{X}{DUMMY-WS}

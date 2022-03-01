@@ -5,9 +5,11 @@
       *    Part 1: Top
            10 FILLER LINE 2 COL 2.
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
-                   20 VALUE "здддддддддддддддддддддддддддддддддддддддд".
+                   20 VALUE "з".
+               15 VALUE " Borrow book ".
+               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "ддддддддддддддддддддддддддддддддддддддддд".
-                   20 VALUE "д".
+                   20 VALUE "дддддддддддддддддддддддддддд".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "©".
 

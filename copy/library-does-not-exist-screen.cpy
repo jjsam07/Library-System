@@ -54,9 +54,8 @@
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
                    20 VALUE "³".
-               15 VALUE "Press any to continue...".
+               15 VALUE "Press any key to continue...".
                15 PIC X(1) TO DUMMY-WS.
-               15 VALUE "    ".
                15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.
                    20 VALUE "³ ".
                15 FILLER FOREGROUND-COLOR 0.
