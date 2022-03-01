@@ -1,0 +1,7 @@
+Book ID:     ${output}{9:10}{BOOK-ID-WS}
+Name:        ${output}{X:50}{BOOKNAME-WS}
+Author:      ${output}{X:50}{AUTHORNAME-WS}
+Available?:  ${output}{X}{BAVAIL-WS}
+Date issued: ${output}{9:2}{DD-WS}/${output}{9:2}{MM-WS}/${output}{9:4}{YYYY-WS}
+
+Press any to continue...${input}{X}{DUMMY-WS}

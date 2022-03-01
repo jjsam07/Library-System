@@ -1,5 +1,5 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. StudentMenu.
+       PROGRAM-ID. adminmenu.
 
        ENVIRONMENT DIVISION.
        DATA DIVISION.
@@ -8,29 +8,33 @@
        77 DUMMY-WS PIC X.
        
        SCREEN SECTION.
+       COPY admin-menu-screen.
        COPY farewell-screen.
        COPY invalid-input-screen.
-       COPY student-menu-screen.
        COPY clear-screen.
 
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
       *    DISPLAY " "
-      *    DISPLAY "STUDENT MAIN MENU"
-      *    DISPLAY "1. SEARCH BOOKS"
-      *    DISPLAY "2. VIEW BOOKS"
-      *    DISPLAY "3. BORROW/RETURN BOOKS"
+      *    DISPLAY "ADMIN MAIN MENU"
+      *    DISPLAY "1. ADD BOOKS"
+      *    DISPLAY "2. SEARCH BOOKS"
+      *    DISPLAY "3. VIEW BOOKS"
+      *    DISPLAY "4. DELETE BOOKS"
       *    DISPLAY "0. EXIT"
       *    DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
-           ACCEPT STUDENT-MENU-SCREEN
+
+           ACCEPT ADMIN-MENU-SCREEN
            DISPLAY CLEAR-SCREEN
                EVALUATE OPTION-WS
                    WHEN 1
-                       CALL "SearchBook"
+                       CALL "AddBook"
                    WHEN 2
-                       CALL "ViewBooks"
+                       CALL "SearchBook"
                    WHEN 3
-                       CALL "BorrowBooks"
+                       CALL "ViewBooks"
+                   WHEN 4
+                       CALL "DeleteBook"
                    WHEN 0
                        EXIT PROGRAM
                    WHEN OTHER

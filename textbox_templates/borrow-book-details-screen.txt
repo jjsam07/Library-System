@@ -1,0 +1,9 @@
+Book ID:         ${output}{9:10}{BOOK-ID-WS}
+Name:            ${output}{X:50}{BOOKNAME-WS}
+Author:          ${output}{X:50}{AUTHORNAME-WS}
+Student:         ${output}{X:50}{STUDENTNAME-WS}
+Student address: ${output}{X:50}{STUDENTADDR-WS}
+Date issued:     ${output}{9:2}{DD-WS}/${output}{9:2}{MM-WS}/${output}{9:4}{YYYY-WS}
+Date Borrowed:   ${output}{9:2}{BDD-WS}/${output}{9:2}{BMM-WS}/${output}{9:4}{BYYYY-WS}
+
+Press any to continue...${input}{X}{DUMMY-WS}

@@ -155,33 +155,34 @@ def line_len(line):
 	return temp_len
 
 def longest_line(lines):
-	print "\n ------------ Line length ------------"
+#	print "\n ------------ Line length ------------"
 	longest = 0
 	temp_len = 0
 	for line in lines:
 		temp_len = line_len(line)
 		if temp_len > longest:
 			longest = temp_len
-		print "\'" + line + "\'" + " :-> %d" % temp_len
+#		print "\'" + line + "\'" + " :-> %d" % temp_len
 		temp_len = 0
-	print "longest = %d" % longest
+#	print "longest = %d" % longest
 	return longest
 
 def textbox():
 	
-	for line in TEXTBOX_CONTENT:
-		print "\'" + line + "\'"
+#	for line in TEXTBOX_CONTENT:
+#		print "\'" + line + "\'"
 	
-	OUTPUT_FILE.write("       01 {} AUTO BACKGROUND-COLOR 7 FOREGROUND-COLOR 0.\n".format(TEXTBOX_NAME))
-	OUTPUT_FILE.write("           05 BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 0.\n\n")
+	OUTPUT_FILE.write("       01 {}.\n".format(TEXTBOX_NAME))
+	OUTPUT_FILE.write("       05 FILLER AUTO BACKGROUND-COLOR 7 FOREGROUND-COLOR 0.\n".format(TEXTBOX_NAME))
+	OUTPUT_FILE.write("           10 BLANK SCREEN BACKGROUND-COLOR 1 FOREGROUND-COLOR 0.\n\n")
 	
 	LONGEST_LINE = longest_line(TEXTBOX_CONTENT)
 	
 #   --------------------- Part 1: Top ---------------------
 
 	OUTPUT_FILE.write("      *    Part 1: Top\n")
-	OUTPUT_FILE.write("           05 FILLER LINE 2 COL 2.\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("           10 FILLER LINE 2 COL 2.\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	
 	if TEXTBOX_TITLE == "\0":
 		IDX = 0
@@ -189,24 +190,24 @@ def textbox():
 		TEMP = UPPER_LEFT_CORNER+(HORIZONTAL_LINE*MULT)
 		LEN = len(TEMP)
 		while(IDX < LEN):
-			OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
 	else:
 		IDX = 0
 		MULT = LONGEST_LINE+TEXTBOX_MARGIN_LEFT+TEXTBOX_MARGIN_RIGHT+2-len(TEXTBOX_TITLE)
 		
-		OUTPUT_FILE.write("                   15 VALUE \"\xda\".\n")
-		OUTPUT_FILE.write("               10 VALUE \" {} \".\n".format(TEXTBOX_TITLE))
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xda\".\n")
+		OUTPUT_FILE.write("               15 VALUE \" {} \".\n".format(TEXTBOX_TITLE))
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 		
 		TEMP = (HORIZONTAL_LINE*MULT)
 		LEN = len(TEMP)
 		while(IDX < LEN):
-			OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
 	
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xbf\".\n\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xbf\".\n\n")
 
 #   --------------------- Part 2: Top ---------------------
 	
@@ -216,18 +217,18 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 2: Top\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
 	while(IDX < LEN):
-		OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+		OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 		IDX += MAX_CHARACTERS
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xbf \".\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
-	OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xbf \".\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
+	OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 	
 #   --------------------- Part 3: Content ---------------------
 	
@@ -240,19 +241,19 @@ def textbox():
 		LEN = len(TEMP)
 		
 		OUTPUT_FILE.write("      *    Content: Top margin {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
 		while(IDX < LEN):
-			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
-		OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 		COUNTER += 1
 		
 	COUNTER = 1
@@ -262,17 +263,17 @@ def textbox():
 		LINE_LEN = len(line)
 		
 		OUTPUT_FILE.write("      *    Content: Line {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
 		
 		IDX = 0
 		TEMP = " "*TEXTBOX_MARGIN_LEFT
 		LEN = len(TEMP)
 		while(IDX < LEN):
-			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
 		
 		SUBST_END = 0
@@ -342,9 +343,9 @@ def textbox():
 				LEN = len(TEMP)
 #				print "DEBUF: if-case: current line: \"" + TEMP + "\""
 				while(IDX < LEN):
-					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
-				OUTPUT_FILE.write("               10 PIC {}({}) TO {}.\n".format(INPUT_TYPE, INPUT_LENGTH, INPUT_VARNAME))
+				OUTPUT_FILE.write("               15 PIC {}({}) TO {}.\n".format(INPUT_TYPE, INPUT_LENGTH, INPUT_VARNAME))
 			elif "${output}" in line[SUBST_END:].lower():
 				
 				SUBST_START = line[SUBST_END:].lower().index("${output}")+SUBST_END
@@ -407,9 +408,9 @@ def textbox():
 				LEN = len(TEMP)
 #				print "DEBUF: if-case: current line: \"" + TEMP + "\""
 				while(IDX < LEN):
-					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
-				OUTPUT_FILE.write("               10 PIC {}({}) FROM {}.\n".format(OUTPUT_TYPE, OUTPUT_LENGTH, OUTPUT_VARNAME))
+				OUTPUT_FILE.write("               15 PIC {}({}) FROM {}.\n".format(OUTPUT_TYPE, OUTPUT_LENGTH, OUTPUT_VARNAME))
 			else:
 				IDX = 0
 				if len(line) == 0:
@@ -419,7 +420,7 @@ def textbox():
 				LEN = len(TEMP)
 #				print "DEBUF: else-case: current line: \"" + TEMP + "\""
 				while(IDX < LEN):
-					OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+					OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 					IDX += MAX_CHARACTERS
 				break
 		
@@ -427,14 +428,14 @@ def textbox():
 		TEMP = " "*TEXTBOX_MARGIN_RIGHT
 		LEN = len(TEMP)
 		while(IDX < LEN):
-			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
 		
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
-		OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 		COUNTER += 1
 	
 	COUNTER = 1
@@ -445,19 +446,19 @@ def textbox():
 		LEN = len(TEMP)
 		
 		OUTPUT_FILE.write("      *    Content: Bottom margin {}\n".format(COUNTER))
-		OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
 		while(IDX < LEN):
-			OUTPUT_FILE.write("               10 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+			OUTPUT_FILE.write("               15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 			IDX += MAX_CHARACTERS
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-		OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-		OUTPUT_FILE.write("                   15 VALUE \"\xb3\".\n")
-		OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+		OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+		OUTPUT_FILE.write("                   20 VALUE \"\xb3\".\n")
+		OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 		COUNTER += 1
 	
 #   --------------------- Part 4: Bottom ---------------------
@@ -468,18 +469,18 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 4: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xb3 \".\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xc0\".\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xb3 \".\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xc0\".\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
 	while(IDX < LEN):
-		OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+		OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 		IDX += MAX_CHARACTERS
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
-	OUTPUT_FILE.write("                   15 VALUE \" \xb3\".\n")
-	OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("                   20 VALUE \" \xb3\".\n")
+	OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 	
 #   --------------------- Part 5: Bottom ---------------------
 	
@@ -489,14 +490,14 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 5: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 2.\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
-	OUTPUT_FILE.write("                   15 VALUE \"\xc0\".\n")
-	OUTPUT_FILE.write("               10 FILLER FOREGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 2.\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 7 HIGHLIGHT.\n")
+	OUTPUT_FILE.write("                   20 VALUE \"\xc0\".\n")
+	OUTPUT_FILE.write("               15 FILLER FOREGROUND-COLOR 0.\n")
 	while(IDX < LEN):
-		OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+		OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 		IDX += MAX_CHARACTERS
-	OUTPUT_FILE.write("               10 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
+	OUTPUT_FILE.write("               15 VALUE \"  \" BACKGROUND-COLOR 0.\n\n")
 	
 #   --------------------- Part 6: Bottom ---------------------
 	
@@ -506,10 +507,10 @@ def textbox():
 	LEN = len(TEMP)
 	
 	OUTPUT_FILE.write("      *    Part 6: Bottom\n")
-	OUTPUT_FILE.write("           05 FILLER LINE + 1 COL 4.\n")
-	OUTPUT_FILE.write("               10 FILLER BACKGROUND-COLOR 0.\n")
+	OUTPUT_FILE.write("           10 FILLER LINE + 1 COL 4.\n")
+	OUTPUT_FILE.write("               15 FILLER BACKGROUND-COLOR 0.\n")
 	while(IDX < LEN):
-		OUTPUT_FILE.write("                   15 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
+		OUTPUT_FILE.write("                   20 VALUE \"{}\".\n".format(TEMP[IDX:IDX+MAX_CHARACTERS]))
 		IDX += MAX_CHARACTERS
 	
 	OUTPUT_FILE.close()

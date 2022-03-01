@@ -1,0 +1,5 @@
+Beginning of record
+
+F1  Exit
+F2  Next
+${input}{X}{DUMMY-WS}

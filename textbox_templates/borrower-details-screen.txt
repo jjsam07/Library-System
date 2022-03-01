@@ -1,0 +1,5 @@
+Student Name:               ${input}{X:50}{STUDENTNAME-WS}
+Student address:            ${input}{X:50}{STUDENTADDR-WS}
+Date Borrowed (DD/MM/YYYY): ${input}{9:8}{BORROWDATE-WS}
+
+Return within 3 days
