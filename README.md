@@ -34,6 +34,6 @@ Just run `clean.bat` (Double-click it or run it in Command Prompt).
 # libcob-4.dll was not found
 ![libcob-4.dll was not found](https://github.com/jjsam07/Library-System/blob/main/images/libcobdll_not_found.png)
 
-If you get this error, you need to add something to the system environment virables.  
+If you get this error, you need to add something to the system environment variables.  
 
 ![system environment variables](https://github.com/jjsam07/Library-System/blob/main/images/system_environment_variables.gif)
