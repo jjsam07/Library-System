@@ -12,13 +12,13 @@ Make sure you install the feature "Add python.exe to Path"
 Copy clean.bat and make.bat from the batch_files directory to the root of the project directory.  
 ![Step 1](https://github.com/jjsam07/Library-System/blob/main/images/step1.gif)
   
-Open OpenCOBOLIDE. Go to Preferences -> Compiler Tab. Copy the text in PATH field and paste it inside clean.bat and make.bat  
+Open OpenCOBOLIDE. Go to Preferences -> Compiler Tab. Copy the text in `PATH` field and paste it inside `clean.bat` and `make.bat`  
   
-*Note: Make sure you include the backward-slash (\) at the end*
+*Note: Make sure you include the backward-slash (\\) at the end*
 Example:  
-Wrong:	D:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\bin  
+Wrong: `D:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\bin`  
   
-Correct:	D:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\bin\  
+Correct: `D:\\Program Files (x86)\\OpenCobolIDE\\GnuCOBOL\\bin\\`  
 ![Step 2](https://github.com/jjsam07/Library-System/blob/main/images/step2.gif)
   
 # Compilation
