@@ -38,7 +38,6 @@
            OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
                    ACCEPT LIBRARY-DOES-NOT-EXIST-SCREEN
-      *            ACCEPT DUMMY-WS
                    DISPLAY CLEAR-SCREEN
                    EXIT PROGRAM
                END-IF
@@ -101,13 +100,6 @@
            EXIT PROGRAM.
            
        ShowBookDetails.
-      *    DISPLAY " "
-      *    DISPLAY "ID: " BOOK-ID-WS.
-      *    DISPLAY "Name: " BOOKNAME-WS.
-      *    DISPLAY "Author: " AUTHORNAME-WS.
-      *    DISPLAY "Available?: " BAVAIL-WS.
-      *    DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
-      *    DISPLAY " ".
            MOVE "N" TO BEGINNING-OF-RECORD.
            MOVE "N" TO END-OF-RECORD.
            ACCEPT VIEW-BOOK-DETAILS-SCREEN.

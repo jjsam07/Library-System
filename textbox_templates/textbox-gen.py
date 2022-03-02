@@ -16,11 +16,6 @@ TEXTBOX_MARGIN_BOTTOM = 0
 TEXTBOX_TITLE = "\0"
 TEXTBOX_CONTENT = "\0"
 TEXTBOX_NAME = "\0"
-#LONGEST_LINE = 0
-#TEMP = 0
-#IDX = 0
-#LEN = 0
-#MULT = 0
 
 def line_len(line):
 #	print "DEBUG: line_len: \"" + line + "\""
@@ -677,8 +672,6 @@ def main():
 		return 0
 		
 	textbox()
-#	longest_line(TEXTBOX_CONTENT)
 		
 if __name__ == '__main__':
  	main()
-#	line_len("${input}{9}")

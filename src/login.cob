@@ -18,11 +18,6 @@
 
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
-      *    DISPLAY "LOGIN"
-      *    DISPLAY "[1] ADMIN"
-      *    DISPLAY "[2] STUDENT"
-      *    DISPLAY "[0] EXIT"
-      *    DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
            ACCEPT LOGIN-SCREEN
            DISPLAY CLEAR-SCREEN
                EVALUATE OPTION-WS
@@ -37,12 +32,10 @@
                        CALL "StudentMenu"
                    WHEN 0
                        ACCEPT FAREWELL-SCREEN
-      *                ACCEPT DUMMY-WS
                        DISPLAY CLEAR-SCREEN
                        STOP RUN
                    WHEN OTHER
                        ACCEPT INVALID-INPUT-SCREEN
-      *                ACCEPT DUMMY-WS
                        DISPLAY CLEAR-SCREEN
                END-EVALUATE
            END-PERFORM.

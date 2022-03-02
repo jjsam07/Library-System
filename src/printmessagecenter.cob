@@ -11,8 +11,6 @@
 
        PROCEDURE DIVISION USING STRING-MESSAGE-LS.
            COMPUTE LEN-WS=(78 - FUNCTION LENGTH(STRING-MESSAGE-LS))/2.
-      *    //printf("\t\t\t");
-      *    //PERFORM VARYING POS-WS BY 1 UNTIL POS-WS = (LEN-WS - 1)
            PERFORM LEN-WS TIMES
                DISPLAY " " WITH NO ADVANCING
            END-PERFORM.

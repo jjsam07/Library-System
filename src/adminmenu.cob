@@ -15,15 +15,6 @@
 
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
-      *    DISPLAY " "
-      *    DISPLAY "ADMIN MAIN MENU"
-      *    DISPLAY "1. ADD BOOKS"
-      *    DISPLAY "2. SEARCH BOOKS"
-      *    DISPLAY "3. VIEW BOOKS"
-      *    DISPLAY "4. DELETE BOOKS"
-      *    DISPLAY "0. EXIT"
-      *    DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
-
            ACCEPT ADMIN-MENU-SCREEN
            DISPLAY CLEAR-SCREEN
                EVALUATE OPTION-WS
@@ -39,7 +30,6 @@
                        EXIT PROGRAM
                    WHEN OTHER
                        ACCEPT INVALID-INPUT-SCREEN
-      *                ACCEPT DUMMY-WS
                        DISPLAY CLEAR-SCREEN
                END-EVALUATE
            END-PERFORM.

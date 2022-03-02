@@ -27,40 +27,6 @@
        COPY clear-screen.
 
        PROCEDURE DIVISION.
-      *    OPEN EXTEND BOOKRECORD.
-      *    IF FILE-DOES-NOT-EXIST-WS
-      *        OPEN OUTPUT BOOKRECORD
-      *        CLOSE BOOKRECORD
-      *    ELSE
-      *        CLOSE BOOKRECORD
-      *    END-IF.
-      *    DISPLAY " "
-      *    DISPLAY "ADD BOOKS".
-      *    DISPLAY "BOOK-ID:" WITH NO ADVANCING
-      *    ACCEPT BOOK-ID.
-      *
-      *    IF BOOK-ID = 0 THEN
-      *        DISPLAY "file is not opened"
-      *        STOP RUN
-      *    ELSE
-      *        OPEN EXTEND BOOKRECORD
-      *            DISPLAY "Book Name:" WITH NO ADVANCING
-      *            ACCEPT BOOKNAME
-      *
-      *            DISPLAY "Author's Name:" WITH NO ADVANCING
-      *            ACCEPT AUTHORNAME
-      *
-      *            DISPLAY "Book Issue Date (DD/MM/YYYY):" WITH NO
-      *            ADVANCING
-      *            ACCEPT ISSUE-DATE
-      *
-      *            DISPLAY "Book Availability: " WITH NO ADVANCING
-      *            ACCEPT BAVAIL
-      *
-      *            DISPLAY " "
-      *            WRITE BOOK
-      *        CLOSE BOOKRECORD
-      *    END-IF.
            OPEN EXTEND BOOKRECORD
                ACCEPT ADDBOOK-SCREEN
                DISPLAY CLEAR-SCREEN

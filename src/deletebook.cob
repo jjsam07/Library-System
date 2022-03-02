@@ -35,15 +35,10 @@
            OPEN I-O BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
                    ACCEPT LIBRARY-DOES-NOT-EXIST-SCREEN
-      *            ACCEPT DUMMY-WS
                    DISPLAY CLEAR-SCREEN
                    EXIT PROGRAM
                END-IF
 
-      *        DISPLAY " "
-      *        DISPLAY "Enter ID of book to be deleted: " WITH NO
-      *        ADVANCING
-      *        ACCEPT BOOK-ID
                ACCEPT DELETEBOOK-SCREEN
 
                READ BOOKRECORD INTO BOOK-WS
@@ -65,20 +60,16 @@
        
        DeleteConfirmation.
            ACCEPT DELETEBOOK-CONFIRMATION-SCREEN.
-      *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
-      *    EXIT PROGRAM.
            
        DeleteSuccess.
            ACCEPT DELETEBOOK-SUCCESS-SCREEN.
-      *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
            
        BookNotFound.
            ACCEPT BOOK-NOT-FOUND-SCREEN.
-      *    ACCEPT DUMMY-WS.
            DISPLAY CLEAR-SCREEN.
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
