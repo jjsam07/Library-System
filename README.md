@@ -36,4 +36,4 @@ Just run `clean.bat` (Double-click it or run it in Command Prompt).
 
 If you get this error, you need to add something to the system environment virables.  
 
-![system environment variables](https://github.com/jjsam07/Library-System/blob/main/images/system_environment_variables)
+![system environment variables](https://github.com/jjsam07/Library-System/blob/main/images/system_environment_variables.gif)
