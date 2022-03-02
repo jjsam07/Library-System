@@ -5,19 +5,19 @@
 - [OpenCOBOLIDE](https://launchpad.net/cobcide/+download)  
   
 ### Note when installing Python
-Make sure you install the feature "Add python.exe to Path"  
+Make sure you install the feature "Add python.exe to Path".  
 ![Note when installing Python](https://github.com/jjsam07/Library-System/blob/main/images/note_when_installing_python.gif)
   
 ### Before compiling
-Copy `clean.bat` and `make.bat` from the `batch_files` directory to the root of the project directory.  
+Copy `clean.bat` and `make.bat` from `batch_files` directory to the root of the project directory.  
 ![Step 1](https://github.com/jjsam07/Library-System/blob/main/images/step1.gif)
   
-Open OpenCOBOLIDE. Go to Preferences -> Compiler Tab. Copy the text in `PATH` field and paste it inside `clean.bat` and `make.bat`  
+Open OpenCOBOLIDE. Go to Preferences -> Compiler Tab. Copy the text in `PATH` field and paste it inside `clean.bat` and `make.bat`.  
   
-*Note: Make sure you include the backslash (`\`) at the end*  
+*Note: Make sure you include the backslash (`\`) at the end.*  
 **Example:**  
-**Wrong:** `D:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\bin`  
-**Correct:** `D:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\bin\`  
+&nbsp;&nbsp;&nbsp;&nbsp;Wrong: `C:\Program Files (x86)\OpenCobolIDE\GnuCOBOL` ❌  
+&nbsp;&nbsp;&nbsp;&nbsp;Correct: `C:\Program Files (x86)\OpenCobolIDE\GnuCOBOL\` ✔  
   
 ![Step 2](https://github.com/jjsam07/Library-System/blob/main/images/step2.gif)
   
