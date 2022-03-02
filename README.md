@@ -1,8 +1,8 @@
 # Prerequisites
 
-### Install Python and OpenCOBOLIDE
+### Install Python and OpenCobolIDE
 - [Python](https://www.python.org/downloads/release/python-2718/)  
-- [OpenCOBOLIDE](https://launchpad.net/cobcide/+download)  
+- [OpenCobolIDE](https://launchpad.net/cobcide/+download)  
   
 ### Note when installing Python
 Make sure you install the feature "Add python.exe to Path".  
@@ -12,7 +12,7 @@ Make sure you install the feature "Add python.exe to Path".
 Copy `clean.bat` and `make.bat` from `batch_files` directory to the root of the project directory.  
 ![Step 1](https://github.com/jjsam07/Library-System/blob/main/images/step1.gif)
   
-Open OpenCOBOLIDE. Go to Preferences -> Compiler Tab. Copy the text in `PATH` field and paste it inside `clean.bat` and `make.bat`.  
+Open OpenCobolIDE. Go to Preferences -> Compiler Tab. Copy the text in `PATH` field and paste it inside `clean.bat` and `make.bat`.  
   
 *Note: Make sure you include the backslash (`\`) at the end.*  
 **Example:**  
