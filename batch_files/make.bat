@@ -16,4 +16,9 @@ set COB_LIB_PATH=%COB_MAIN_DIR%lib
 rem the following won't work in GnuCOBOL 2.0 if there are spaces in COB_MAIN_DIR
 set COB_LIBRARY_PATH=%COB_MAIN_DIR%extras
 
+where /q mingw32-make
+if errorlevel 1 (
+set "PATH=%COB_MAIN_DIR%bin;%PATH%"
+)
+
 "%COB_MAIN_DIR%bin\mingw32-make"
