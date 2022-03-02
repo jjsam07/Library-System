@@ -1,6 +1,6 @@
 ${title}{Borrow/Return}
-[1] - BORROW
-[2] - RETURN
-[0] - QUIT
+[1] Borrow
+[2] Return
+[0] Back to Student menu
 
 ${input}{9}{Choice}

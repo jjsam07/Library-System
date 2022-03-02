@@ -1,5 +1,6 @@
 ${title}{Login}
 [1] ADMIN
 [2] STUDENT
+[3] REGISTER
 [0] EXIT
 ENTER CHOICE: ${input}{9}{OPTION-WS}

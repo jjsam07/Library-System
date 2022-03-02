@@ -29,7 +29,9 @@
                            ACCEPT WRONG-PASSWORD-SCREEN
                        END-IF
                    WHEN 2
-                       CALL "StudentMenu"
+                       CALL "studentlogin"
+                   WHEN 3
+                       CALL "studentregister"
                    WHEN 0
                        ACCEPT FAREWELL-SCREEN
                        DISPLAY CLEAR-SCREEN

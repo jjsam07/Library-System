@@ -3,7 +3,7 @@
        ENVIRONMENT DIVISION.
        INPUT-OUTPUT SECTION.
        FILE-CONTROL.
-           SELECT BOOKRECORD ASSIGN TO "library.txt"
+           SELECT BOOKRECORD ASSIGN TO "library.bin"
            ORGANIZATION IS INDEXED
            ACCESS MODE IS SEQUENTIAL
            RECORD KEY IS BOOK-ID
@@ -95,7 +95,6 @@
                            END-IF
                    END-EVALUATE
                END-PERFORM
-
            CLOSE BOOKRECORD.
            EXIT PROGRAM.
            

@@ -12,30 +12,32 @@ TEXTBOX_COPYBOOK := $(TEXTBOX_TEMPLATES:$(TEXTBOX_TEMPLATES_DIR)/%.txt=$(COPYBOO
 SUBPROGRAMS_SRC = $(filter-out $(SRC_DIR)/main.cob, $(wildcard $(SRC_DIR)/*.cob))
 SUBPROGRAMS_OBJ = $(SUBPROGRAMS_SRC:$(SRC_DIR)/%.cob=$(OBJ_DIR)/%.o)
 
+.PHONY: all subprograms clean clean-windows files
+
 all: $(PROGNAME)
 
-$(PROGNAME): $(TEXTBOX_COPYBOOK) $(MAIN_SRC) $(SUBPROGRAMS_OBJ)
-	@cobc -x $(MAIN_SRC) $(SUBPROGRAMS_OBJ) -o $(PROGNAME)
+$(PROGNAME): $(SUBPROGRAMS_OBJ) $(MAIN_SRC)
+	cobc -x $(MAIN_SRC) $(SUBPROGRAMS_OBJ) -o $(PROGNAME)
 	@echo .
 	@echo .
 	@echo .
 	@echo All done.
 
-$(SUBPROGRAMS_OBJ): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cob
-	@cobc $(COBC_OPTION) $< -o $@
+$(SUBPROGRAMS_OBJ): $(OBJ_DIR)/%.o: $(SRC_DIR)/%.cob $(TEXTBOX_COPYBOOK)
+	cobc $(COBC_OPTION) $< -o $@
 
 $(TEXTBOX_COPYBOOK): $(COPYBOOK_DIR)/%.cpy : $(TEXTBOX_TEMPLATES_DIR)/%.txt
-	@python $(TEXTBOX_TEMPLATES_DIR)/textbox-gen.py -n $(call toupper,$(subst $(TEXTBOX_TEMPLATES_DIR)/,,$(subst .txt,,$<))) -c $< -o $@ 2> nul
+	python $(TEXTBOX_TEMPLATES_DIR)/textbox-gen.py -n $(call toupper,$(subst $(TEXTBOX_TEMPLATES_DIR)/,,$(subst .txt,,$<))) -c $< -o $@
 
-clean: 
+clean:
 	rm $(OBJ_DIR)/*.o $(PROGNAME)
 	rm $(TEXTBOX_COPYBOOK)
 	
-clean-windows: 
+clean-windows:
 	del /q $(OBJ_DIR)\*.o $(PROGNAME)
 	del $(subst /,\,$(TEXTBOX_COPYBOOK))
 
-files: 
+files:
 	@echo "SUBPROGRAMS_SRC: $(SUBPROGRAMS_SRC)"
 	@echo "SUBPROGRAMS_OBJ: $(SUBPROGRAMS_OBJ)"
 	@echo "TEXTBOX_COPYBOOK: $(TEXTBOX_COPYBOOK)"

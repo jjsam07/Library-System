@@ -1,0 +1,4 @@
+${title}{Registration}
+Student ID:      ${input}{9:10}{STUDENT-ID}
+Student Name:    ${input}{X:50}{STUDENTNAME}
+Student Address: ${input}{X:100}{STUDENTADDR}
