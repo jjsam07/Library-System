@@ -1,0 +1,5 @@
+${title}{Login}
+[1] ADMIN
+[2] STUDENT
+[0] EXIT
+ENTER CHOICE: ${input}{9}{OPTION-WS}

@@ -7,52 +7,44 @@
            ORGANIZATION IS INDEXED
            ACCESS MODE IS RANDOM
            RECORD KEY IS BOOK-ID
-           ALTERNATE RECORD KEY IS BOOKNAME
+           ALTERNATE RECORD KEY IS BOOK-ID
            FILE STATUS IS FILE-STATUS-WS.
 
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       01 BOOK.
-           05 BOOK-ID PIC 9(10).
-           05 BOOKNAME PIC X(50).
-           05 AUTHORNAME PIC X(50).
-           05 STUDENTNAME PIC X(50).
-           05 STUDENTADDR PIC X(300).
-           05 ISSUE-DATE.
-               10 MM PIC 9(2).
-               10 DD PIC 9(2).
-               10 YYYY PIC 9(4).
-           05 BAVAIL PIC X.
+       COPY bookrecord-fs.
+
        WORKING-STORAGE SECTION.
-       01 BOOK-WS.
-           05 BOOK-ID-WS PIC 9(10).
-           05 BOOKNAME-WS PIC X(50).
-           05 AUTHORNAME-WS PIC X(50).
-           05 STUDENTNAME-WS PIC X(50).
-           05 STUDENTADDR-WS PIC X(300).
-           05 ISSUE-DATE-WS.
-               10 MM-WS PIC 9(2).
-               10 DD-WS PIC 9(2).
-               10 YYYY-WS PIC 9(4).
-           05 BAVAIL-WS PIC X.
+       COPY bookrecord-ws.
+       
+       77 DUMMY-WS PIC X.
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
+       
+       SCREEN SECTION.
+       COPY book-show-details-screen.
+       COPY book-not-found-screen.
+       COPY library-does-not-exist-screen.
+       COPY searchbook-screen.
+       COPY clear-screen.
 
        PROCEDURE DIVISION.
            OPEN INPUT BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
-                   DISPLAY "Library record does not exist"
+                   ACCEPT LIBRARY-DOES-NOT-EXIST-SCREEN
+      *            ACCEPT DUMMY-WS
+                   DISPLAY CLEAR-SCREEN
                    EXIT PROGRAM
                END-IF
 
-               CALL "HeadMessage" USING "SEARCH BOOKS"
-
-               DISPLAY "Enter Book Name to search: " WITH NO ADVANCING
-               ACCEPT BOOKNAME
+      *        DISPLAY " "
+      *        DISPLAY "Enter Book ID to search: " WITH NO ADVANCING
+               ACCEPT SEARCHBOOK-SCREEN
+               DISPLAY CLEAR-SCREEN
                READ BOOKRECORD INTO BOOK-WS
-                   KEY IS BOOKNAME
-                   INVALID KEY DISPLAY "Not found"
+                   KEY IS BOOK-ID
+                   INVALID KEY PERFORM BookNotFound
                    NOT INVALID KEY PERFORM ShowBookDetails
                END-READ
 
@@ -60,9 +52,17 @@
            EXIT PROGRAM.
 
        ShowBookDetails.
-           DISPLAY "ID: " BOOK-ID-WS.
-           DISPLAY "Name: " BOOKNAME-WS.
-           DISPLAY "Author: " AUTHORNAME-WS.
-           DISPLAY "Available?: " BAVAIL-WS.
-           DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
-           DISPLAY " ".
+      *    DISPLAY "ID: " BOOK-ID-WS.
+      *    DISPLAY "Name: " BOOKNAME-WS.
+      *    DISPLAY "Author: " AUTHORNAME-WS.
+      *    DISPLAY "Available?: " BAVAIL-WS.
+      *    DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
+      *    DISPLAY " ".
+           ACCEPT BOOK-SHOW-DETAILS-SCREEN.
+      *    ACCEPT DUMMY-WS.
+           DISPLAY CLEAR-SCREEN.
+        
+       BookNotFound.
+           ACCEPT BOOK-NOT-FOUND-SCREEN.
+      *    ACCEPT DUMMY-WS.
+           DISPLAY CLEAR-SCREEN.

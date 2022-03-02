@@ -1,37 +1,45 @@
        IDENTIFICATION DIVISION.
-       PROGRAM-ID. StudentMenu.
+       PROGRAM-ID. login.
+
        ENVIRONMENT DIVISION.
        DATA DIVISION.
        WORKING-STORAGE SECTION.
        01 OPTION-WS PIC 9.
+       77 PASSWORD-WS PIC X(10).
        77 DUMMY-WS PIC X.
        
        SCREEN SECTION.
+       COPY enter-password-screen.
+       COPY login-screen.
        COPY farewell-screen.
        COPY invalid-input-screen.
-       COPY student-menu-screen.
+       COPY wrong-password-screen.
        COPY clear-screen.
 
        PROCEDURE DIVISION.
            PERFORM UNTIL 1 < 0
-      *    DISPLAY " "
-      *    DISPLAY "STUDENT MAIN MENU"
-      *    DISPLAY "1. SEARCH BOOKS"
-      *    DISPLAY "2. VIEW BOOKS"
-      *    DISPLAY "3. BORROW/RETURN BOOKS"
-      *    DISPLAY "0. EXIT"
+      *    DISPLAY "LOGIN"
+      *    DISPLAY "[1] ADMIN"
+      *    DISPLAY "[2] STUDENT"
+      *    DISPLAY "[0] EXIT"
       *    DISPLAY "ENTER CHOICE: " WITH NO ADVANCING
-           ACCEPT STUDENT-MENU-SCREEN
+           ACCEPT LOGIN-SCREEN
            DISPLAY CLEAR-SCREEN
                EVALUATE OPTION-WS
                    WHEN 1
-                       CALL "SearchBook"
+                       ACCEPT ENTER-PASSWORD-SCREEN
+                       IF PASSWORD-WS = "password"
+                           CALL "adminmenu"
+                       ELSE
+                           ACCEPT WRONG-PASSWORD-SCREEN
+                       END-IF
                    WHEN 2
-                       CALL "ViewBooks"
-                   WHEN 3
-                       CALL "BorrowBooks"
+                       CALL "StudentMenu"
                    WHEN 0
-                       EXIT PROGRAM
+                       ACCEPT FAREWELL-SCREEN
+      *                ACCEPT DUMMY-WS
+                       DISPLAY CLEAR-SCREEN
+                       STOP RUN
                    WHEN OTHER
                        ACCEPT INVALID-INPUT-SCREEN
       *                ACCEPT DUMMY-WS

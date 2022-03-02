@@ -1,0 +1,6 @@
+${title}{Student: Main menu}
+1. SEARCH BOOKS
+2. VIEW BOOKS
+3. BORROW/RETURN BOOKS
+0. EXIT
+ENTER CHOICE: ${input}{9}{OPTION-WS}

@@ -13,32 +13,18 @@
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       01 BOOK.
-           05 BOOK-ID PIC 9(10).
-           05 BOOKNAME PIC X(50).
-           05 AUTHORNAME PIC X(50).
-           05 STUDENTNAME PIC X(50).
-           05 STUDENTADDR PIC X(300).
-           05 ISSUE-DATE.
-               10 MM PIC 9(2).
-               10 DD PIC 9(2).
-               10 YYYY PIC 9(4).
-           05 BAVAIL PIC X.
+       COPY bookrecord-fs.
+
        WORKING-STORAGE SECTION.
-       01 BOOK-WS.
-           05 BOOK-ID-WS PIC 9(10).
-           05 BOOKNAME-WS PIC X(50).
-           05 AUTHORNAME-WS PIC X(50).
-           05 STUDENTNAME-WS PIC X(50).
-           05 STUDENTADDR-WS PIC X(300).
-           05 ISSUE-DATE-WS.
-               10 MM-WS PIC 9(2).
-               10 DD-WS PIC 9(2).
-               10 YYYY-WS PIC 9(4).
-           05 BAVAIL-WS PIC X.
+       COPY bookrecord-ws.
+       
        01 EOF-WS PIC A VALUE "N".
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
+       
+       SCREEN SECTION.
+       COPY addbook-screen.
+       COPY clear-screen.
 
        PROCEDURE DIVISION.
       *    OPEN EXTEND BOOKRECORD.
@@ -48,32 +34,36 @@
       *    ELSE
       *        CLOSE BOOKRECORD
       *    END-IF.
-
-           CALL "HeadMessage" USING "ADD NEW BOOKS".
-
-           DISPLAY "               ADD BOOKS".
-           DISPLAY "BOOK-ID:" WITH NO ADVANCING
-           ACCEPT BOOK-ID.
-
-           IF BOOK-ID = 0 THEN
-               DISPLAY "file is not opened"
-               STOP RUN
-           ELSE
-               OPEN EXTEND BOOKRECORD
-                   DISPLAY "Book Name:" WITH NO ADVANCING
-                   ACCEPT BOOKNAME
-
-                   DISPLAY "Author's Name:" WITH NO ADVANCING
-                   ACCEPT AUTHORNAME
-
-                   DISPLAY "Book Issue Date (DD/MM/YYYY):" WITH NO
-                   ADVANCING
-                   ACCEPT ISSUE-DATE
-
-                   DISPLAY "Book Availability: " WITH NO ADVANCING
-                   ACCEPT BAVAIL
-
-                   DISPLAY " "
-                   WRITE BOOK
-               CLOSE BOOKRECORD
-           END-IF.
+      *    DISPLAY " "
+      *    DISPLAY "ADD BOOKS".
+      *    DISPLAY "BOOK-ID:" WITH NO ADVANCING
+      *    ACCEPT BOOK-ID.
+      *
+      *    IF BOOK-ID = 0 THEN
+      *        DISPLAY "file is not opened"
+      *        STOP RUN
+      *    ELSE
+      *        OPEN EXTEND BOOKRECORD
+      *            DISPLAY "Book Name:" WITH NO ADVANCING
+      *            ACCEPT BOOKNAME
+      *
+      *            DISPLAY "Author's Name:" WITH NO ADVANCING
+      *            ACCEPT AUTHORNAME
+      *
+      *            DISPLAY "Book Issue Date (DD/MM/YYYY):" WITH NO
+      *            ADVANCING
+      *            ACCEPT ISSUE-DATE
+      *
+      *            DISPLAY "Book Availability: " WITH NO ADVANCING
+      *            ACCEPT BAVAIL
+      *
+      *            DISPLAY " "
+      *            WRITE BOOK
+      *        CLOSE BOOKRECORD
+      *    END-IF.
+           OPEN EXTEND BOOKRECORD
+               ACCEPT ADDBOOK-SCREEN
+               DISPLAY CLEAR-SCREEN
+               WRITE BOOK
+           CLOSE BOOKRECORD.
+           EXIT PROGRAM.
