@@ -1,0 +1,7 @@
+          Welcome
+             to
+          Library
+         Management
+           System
+
+Press any key to continue...${input}{X}{DUMMY-WS}

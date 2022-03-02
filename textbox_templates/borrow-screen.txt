@@ -1,0 +1,2 @@
+${title}{Borrow book}
+Input BOOK ID: ${input}{9:10}{BOOK-ID}

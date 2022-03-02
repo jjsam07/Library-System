@@ -1,0 +1,6 @@
+${title}{View books}
+End of record
+
+F1  Previous
+F2  Exit
+${input}{X}{DUMMY-WS}

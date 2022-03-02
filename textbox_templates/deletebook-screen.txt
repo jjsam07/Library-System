@@ -1,0 +1,2 @@
+${title}{Delete book}
+Enter ID of book to be deleted: ${input}{9:10}{BOOK-ID}

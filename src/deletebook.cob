@@ -13,102 +13,71 @@
        DATA DIVISION.
        FILE SECTION.
        FD BOOKRECORD.
-       01 BOOK.
-           05 BOOK-ID PIC 9(10).
-           05 BOOKNAME PIC X(50).
-           05 AUTHORNAME PIC X(50).
-           05 STUDENTNAME PIC X(50).
-           05 STUDENTADDR PIC X(300).
-           05 ISSUE-DATE.
-               10 MM PIC 9(2).
-               10 DD PIC 9(2).
-               10 YYYY PIC 9(4).
+       COPY bookrecord-fs.
 
        WORKING-STORAGE SECTION.
-       01 BOOK-WS.
-           05 BOOK-ID-WS PIC 9(10).
-           05 BOOKNAME-WS PIC X(50).
-           05 AUTHORNAME-WS PIC X(50).
-           05 STUDENTNAME-WS PIC X(50).
-           05 STUDENTADDR-WS PIC X(300).
-           05 ISSUE-DATE-WS.
-               10 MM-WS PIC 9(2).
-               10 DD-WS PIC 9(2).
-               10 YYYY-WS PIC 9(4).
-           05 BOOK-EXISTS PIC 9.
-           05 BOOK-NOT-FOUND PIC 9.
-       01 OPTION-WS PIC 9.
-       01 BkExists Pic X.
-       01 EOF-WS PIC A VALUE "N".
+       77 DUMMY-WS PIC X.
+       COPY bookrecord-ws.
+
        01 FILE-STATUS-WS PIC X(2).
            88 FILE-DOES-NOT-EXIST-WS VALUE 35.
+       
+       SCREEN SECTION.
+       COPY book-not-found-screen.
+       COPY deletebook-cancel-screen.
+       COPY deletebook-confirmation-screen.
+       COPY deletebook-success-screen.
+       COPY deletebook-screen.
+       COPY library-does-not-exist-screen.
+       COPY clear-screen.
 
        PROCEDURE DIVISION.
            OPEN I-O BOOKRECORD
                IF FILE-DOES-NOT-EXIST-WS
-                   DISPLAY "Library record does not exist"
+                   ACCEPT LIBRARY-DOES-NOT-EXIST-SCREEN
+      *            ACCEPT DUMMY-WS
+                   DISPLAY CLEAR-SCREEN
                    EXIT PROGRAM
                END-IF
-
-               DISPLAY " "
-               DISPLAY "Enter ID of book to be deleted: " WITH NO
-               ADVANCING
-               ACCEPT BOOK-ID
+      *        DISPLAY " "
+      *        DISPLAY "Enter ID of book to be deleted: " WITH NO
+      *        ADVANCING
+      *        ACCEPT BOOK-ID
+               ACCEPT DELETEBOOK-SCREEN
 
                READ BOOKRECORD INTO BOOK-WS
-                   INVALID KEY MOVE 'N' TO BkExists
-               END-READ.
-               IF BkExists='N'
-                   DISPLAY " "
-                   DISPLAY "BOOK DOES NOT EXIST."
-                   DISPLAY " "
-                   DISPLAY " "
-                   MOVE 'Y' TO BkExists
-                   CALL "Menu" USING "DeleteBook"
+                   INVALID KEY PERFORM BookNotFound
+                   NOT INVALID KEY PERFORM DeleteConfirmation
+               END-READ
+
+               IF DUMMY-WS = "Y" OR DUMMY-WS = "y"
+                   DELETE BOOKRECORD RECORD
+                       INVALID KEY PERFORM BookNotFound
+                       NOT INVALID KEY PERFORM DeleteSuccess
+                   END-DELETE
                ELSE
-                   READ BOOKRECORD INTO BOOK-WS
-                   PERFORM ShowBookDetails
-                   PERFORM UNTIL 1 < 0
-                   DISPLAY " "
-                   DISPLAY "Are you sure to delete this book?"
-                   DISPLAY "[1] - YES"
-                   DISPLAY "[2] - NO"
-                   DISPLAY "[0] - EXIT"
-                   DISPLAY " "
-                   DISPLAY "Enter your choice: "
-                   WITH NO ADVANCING
-                   ACCEPT OPTION-WS
-                   EVALUATE OPTION-WS
-                       WHEN 1 PERFORM DelBook
-
-                       WHEN 2
-                           CALL "DeleteBook" USING "DeleteBook"
-                           ACCEPT BOOK-ID
-                       WHEN 0
-                           DISPLAY "THANK YOU COME AGAIN NEXT TIME."
-                       WHEN OTHER
-                       DISPLAY "INVALID INPUT. PLEASE TRY AGAIN."
-                   END-EVALUATE
-                   END-PERFORM
+                   ACCEPT DELETEBOOK-CANCEL-SCREEN
                END-IF
-               EXIT PROGRAM.
 
-       ShowBookDetails.
-           DISPLAY " "
-           DISPLAY "ID: " BOOK-ID-WS.
-           DISPLAY "Name: " BOOKNAME-WS.
-           DISPLAY "Author: " AUTHORNAME-WS.
-           DISPLAY "Date issued: " DD-WS "/" MM-WS "/" YYYY-WS.
-
-
-       DelBook.
-               DELETE BOOKRECORD RECORD
-                   NOT INVALID KEY DISPLAY "BOOK HAS BEEN DELETED."
-                   DISPLAY " "
-                   DISPLAY " "
-                   DISPLAY " "
-                   DISPLAY " "
-                   DISPLAY " "
-               END-DELETE
-               CALL "Menu" USING "Main"
+           CLOSE BOOKRECORD.
+           EXIT PROGRAM.
+       
+       DeleteConfirmation.
+           ACCEPT DELETEBOOK-CONFIRMATION-SCREEN.
+      *    ACCEPT DUMMY-WS.
+           DISPLAY CLEAR-SCREEN.
+      *    EXIT PROGRAM.
+           
+       DeleteSuccess.
+           ACCEPT DELETEBOOK-SUCCESS-SCREEN.
+      *    ACCEPT DUMMY-WS.
+           DISPLAY CLEAR-SCREEN.
+           CLOSE BOOKRECORD.
+           EXIT PROGRAM.
+           
+       BookNotFound.
+           ACCEPT BOOK-NOT-FOUND-SCREEN.
+      *    ACCEPT DUMMY-WS.
+           DISPLAY CLEAR-SCREEN.
+           CLOSE BOOKRECORD.
            EXIT PROGRAM.
