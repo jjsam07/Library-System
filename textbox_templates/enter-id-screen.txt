@@ -1,0 +1,2 @@
+${title}{Student login}
+Enter Student ID: ${input}{9:10}{STUDENT-ID}

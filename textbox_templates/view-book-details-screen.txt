@@ -1,9 +1,9 @@
 ${title}{View books}
-Book ID:     ${output}{9:10}{BOOK-ID-WS}
-Name:        ${output}{X:50}{BOOKNAME-WS}
-Author:      ${output}{X:50}{AUTHORNAME-WS}
-Available?:  ${output}{X}{BAVAIL-WS}
-Date issued: ${output}{9:2}{DD-WS}/${output}{9:2}{MM-WS}/${output}{9:4}{YYYY-WS}
+Book ID:       ${output}{9:10}{BOOK-ID-WS}
+Book name:     ${output}{X:50}{BOOKNAME-WS}
+Author:        ${output}{X:50}{AUTHORNAME-WS}
+Date issued:   ${output}{9:2}{DD-WS}/${output}{9:2}{MM-WS}/${output}{9:4}{YYYY-WS}
+Book quantity: ${output}{9:4}{QUANTITY-WS}
 
 F1  Previous
 F2  Next

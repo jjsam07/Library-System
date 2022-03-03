@@ -1,0 +1,6 @@
+An error occurred.
+The ID you entered might be already in use.
+
+File status = ${output}{X:2}{FILE-STATUS-WS}
+
+Press any key to continue...${input}{X}{DUMMY-WS}

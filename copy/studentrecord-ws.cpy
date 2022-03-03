@@ -1,0 +1,4 @@
+       01 STUDENT-WS.
+           05 STUDENT-ID-WS PIC 9(10).
+           05 STUDENTNAME-WS PIC X(50).
+           05 STUDENTADDR-WS PIC X(100).

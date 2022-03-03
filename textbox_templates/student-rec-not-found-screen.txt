@@ -1,0 +1,4 @@
+Student record does not exist.
+Please register first.
+
+Press any key to continue...${input}{X}{DUMMY-WS}

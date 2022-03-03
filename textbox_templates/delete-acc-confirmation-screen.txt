@@ -1,0 +1,6 @@
+${title}{Delete account}
+Are you sure you want to delete your account?
+
+Y/y  Delete
+Press any other key to Cancel
+${input}{X}{DUMMY-WS}

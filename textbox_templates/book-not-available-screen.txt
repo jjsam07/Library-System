@@ -1,0 +1,5 @@
+The selected book is not available:
+   Book name: ${output}{X:50}{BOOKNAME-WS}
+   Quantity:  ${output}{9:4}{QUANTITY}
+
+Press any key to continue...${input}{X}{DUMMY-WS}
