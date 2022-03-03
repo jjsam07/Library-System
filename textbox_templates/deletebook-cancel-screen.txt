@@ -1,4 +1,0 @@
-${title}{Delete book}
-Operation cancelled
-
-Press any key to continue...${input}{X}{DUMMY-WS}

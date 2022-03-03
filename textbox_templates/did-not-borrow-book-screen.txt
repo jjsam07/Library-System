@@ -1,0 +1,6 @@
+Borrow record of the specific book:
+    ${output}{X:50}{BOOKNAME-WS}
+
+does not exist for ${output}{X:50}{STUDENTNAME-WS}
+
+Press any key to continue...${input}{X}{DUMMY-WS}

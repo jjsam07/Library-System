@@ -1,3 +1,20 @@
+# Converts textbox templates to Cobol textbox screens
+#
+# Copyright (C) 2022 Erasto Samarinta
+# 
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of the GNU General Public License as published by
+# the Free Software Foundation, either version 3 of the License, or
+# (at your option) any later version.
+# 
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+# 
+# You should have received a copy of the GNU General Public License
+# along with this program.  If not, see <https://www.gnu.org/licenses/>.
+
 import sys
 
 MAX_CHARACTERS = 41
@@ -16,11 +33,6 @@ TEXTBOX_MARGIN_BOTTOM = 0
 TEXTBOX_TITLE = "\0"
 TEXTBOX_CONTENT = "\0"
 TEXTBOX_NAME = "\0"
-#LONGEST_LINE = 0
-#TEMP = 0
-#IDX = 0
-#LEN = 0
-#MULT = 0
 
 def line_len(line):
 #	print "DEBUG: line_len: \"" + line + "\""
@@ -677,8 +689,6 @@ def main():
 		return 0
 		
 	textbox()
-#	longest_line(TEXTBOX_CONTENT)
 		
 if __name__ == '__main__':
  	main()
-#	line_len("${input}{9}")

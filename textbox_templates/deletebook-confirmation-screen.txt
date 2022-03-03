@@ -4,5 +4,5 @@ Are you sure you want to delete:
     ${output}{X:50}{BOOKNAME-WS}
 
 Y/y  Delete
-N/n  Cancel
+Press any other key to Cancel
 ${input}{X}{DUMMY-WS}
